@@ -10,6 +10,7 @@ import {
 } from '@/seo/schema';
 
 import Hero from '@/components/home/Hero';
+import TickerBar from '@/components/layout/TickerBar';
 import ComplexCases from '@/components/home/ComplexCases';
 import Services from '@/components/home/Services';
 import WhyChooseUs from '@/components/home/WhyChooseUs';
@@ -51,6 +52,7 @@ export default function HomePage() {
       />
 
       <Hero />
+      <TickerBar />
       <ComplexCases />
       <Services />
       <WhyChooseUs />

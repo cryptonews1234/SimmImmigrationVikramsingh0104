@@ -9,13 +9,13 @@ const superVisa = {
 
   hero: {
     eyebrow: 'Super Visa for Parents and Grandparents',
-    title: 'Bring your parents closer.',
-    titleAccent: 'More time together in Canada.',
+    title: 'Super Visa Canada',
+    headline: 'Bring Your Parents Closer. Spend More Time Together.',
     intro:
-      'A Super Visa helps eligible parents and grandparents visit their family in Canada for longer stays. Simmi Immigration helps you prepare a clear, complete and well-organized application package.',
+      'A Super Visa allows eligible parents and grandparents of Canadian citizens and permanent residents to stay in Canada for extended periods. Simmi Immigration provides clear, transparent guidance to help you prepare a complete application package.',
     image:
-      'https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1200&q=75',
-    imageAlt: 'Multi-generational family sharing a meal together in Canada',
+      'https://images.unsplash.com/photo-1609220136736-443140cffec6?auto=format&fit=crop&w=1200&q=75',
+    imageAlt: 'Grandparents with their children and grandchildren enjoying time together',
   },
 
   quickFacts: [
@@ -28,68 +28,103 @@ const superVisa = {
   intro: {
     heading: 'Super Visa Canada for parents and grandparents',
     paragraphs: [
-      "Canada's Super Visa program is designed for parents and grandparents of Canadian citizens, permanent residents and registered Indians who want to make extended family visits. Eligible visitors may be authorized to stay in Canada for up to five years at a time, with multiple entries during the visa's validity. Dependants cannot be included in a Super Visa application.",
-      'For many families, the program offers a practical way to attend important celebrations, help after childbirth, spend time with grandchildren, or simply enjoy family life in Canada without being limited to a typical short visit.',
+      'The Super Visa Canada program allows eligible parents and grandparents of Canadian citizens and permanent residents to visit Canada for extended stays without needing to renew their status as frequently as a regular visitor visa. It is designed to help families spend more time together while allowing visitors to enter Canada multiple times during the validity of their visa, provided they continue to meet the program requirements.',
+      'To qualify for a Super Visa, applicants must generally have an invitation letter from their child or grandchild in Canada, meet financial support requirements, obtain eligible medical insurance, and satisfy an immigration officer that they meet the requirements for temporary entry to Canada.',
     ],
+    closing:
+      'Whether you are applying for your parents or grandparents for the first time or need professional guidance with a new application after a previous refusal, this guide explains the key requirements and considerations for the Super Visa Canada program.',
+    helpLead: 'Need help with your application?',
+    helpText: 'Simmi Immigration provides transparent guidance to help families prepare complete and well-organized Super Visa applications.',
   },
 
   whatIsIt: {
     heading: 'What is a Super Visa?',
     paragraphs: [
-      'A Super Visa is a temporary resident visa created specifically for eligible parents and grandparents. Unlike a regular visitor visa, which generally permits a stay of up to six months at a time, a Super Visa can allow a much longer stay during each entry. The visa may be issued for multiple entries and may remain valid for up to ten years, subject to passport validity and the officer\u2019s decision.',
-      'A Super Visa does not provide permanent resident status or authorization to work. The visitor remains a temporary resident and must follow the conditions of their stay.',
+      'A Super Visa Canada is a multiple-entry temporary resident visa that allows eligible parents and grandparents of Canadian citizens and permanent residents to visit Canada for extended stays. Unlike a regular visitor visa, it is designed to help families spend more time together and may allow longer stays during each entry, subject to applicable immigration rules and the conditions of the visa.',
+      "The Super Visa is intended for temporary visits only. It does not provide permanent resident status or authorization to work in Canada. Applicants must meet the program's eligibility, financial, medical insurance, and immigration requirements.",
     ],
     benefits: [
-      'Extended stays with children and grandchildren in Canada.',
-      'Multiple entries while the visa remains valid.',
-      'Fewer repeated applications for short family visits.',
-      'A temporary option while a parent or grandparent sponsorship is pending.',
-      'More flexibility for family support and important life events.',
+      'Multiple-entry temporary resident visa.',
+      'Designed for parents and grandparents of Canadian citizens and permanent residents.',
+      'Longer stays than a regular visitor visa, subject to applicable rules.',
+      'Requires eligible medical insurance and financial support from the host.',
+      'Temporary status only; does not lead to permanent residence.',
     ],
   },
 
   comparison: {
-    heading: 'Super Visa vs. regular visitor visa',
+    heading: 'Super Visa vs. Regular Visitor Visa',
     description:
-      'A visitor visa is usually more appropriate for tourism, events or family trips lasting six months or less. A Super Visa is intended for eligible parents and grandparents who want longer visits and can meet the additional income, insurance and medical requirements.',
+      'A regular visitor visa is generally intended for short-term visits to Canada, while the Super Visa is designed for eligible parents and grandparents who wish to spend extended time with their family in Canada. The comparison below highlights the main differences in eligibility, length of stay, insurance requirements, and other key program features.',
     rows: [
-      { feature: 'Eligible applicants', visitor: 'General visitors', superVisa: 'Parents and grandparents of eligible hosts' },
-      { feature: 'Typical authorized stay', visitor: 'Up to six months', superVisa: 'Up to five years at a time' },
-      { feature: 'Medical insurance', visitor: 'Not always mandatory', superVisa: 'Mandatory qualifying coverage' },
-      { feature: 'Immigration medical exam', visitor: 'Sometimes required', superVisa: 'Required' },
-      { feature: 'Host income threshold', visitor: 'No fixed program threshold', superVisa: 'Minimum necessary income applies' },
+      {
+        feature: 'Who can apply',
+        visitor: 'Most foreign nationals who meet the requirements',
+        superVisa: 'Eligible parents and grandparents of Canadian citizens or permanent residents',
+      },
+      { feature: 'Purpose', visitor: 'Tourism, business, family visits', superVisa: 'Extended family visits' },
+      {
+        feature: 'Typical authorized stay',
+        visitor: 'Up to 6 months (unless otherwise authorized)',
+        superVisa: 'Up to 5 years per entry, subject to current program rules and officer decision',
+      },
+      { feature: 'Multiple entries', visitor: 'May be issued', superVisa: 'May be issued' },
+      { feature: 'Medical insurance', visitor: 'Generally not required', superVisa: 'Required' },
+      {
+        feature: 'Immigration medical exam',
+        visitor: 'May be required',
+        superVisa: 'May be required under program requirements',
+      },
+      {
+        feature: 'Host income requirement',
+        visitor: 'No specific income requirement',
+        superVisa: 'Host must meet the minimum income requirement',
+      },
     ],
   },
 
   eligibility: [
     {
-      title: 'Who can apply',
+      title: 'Who Can Apply',
       icon: 'family',
       intro:
-        'The applicant must be the parent or grandparent of an eligible host in Canada, and must generally apply from outside Canada.',
+        'The applicant must be the parent or grandparent of a Canadian citizen, permanent resident, or registered Indian. Super Visa applications are generally submitted from outside Canada.',
       items: [
+        'Be the parent or grandparent of an eligible host.',
         'Be admissible to Canada.',
-        'Complete an immigration medical exam.',
-        'Obtain qualifying private medical insurance.',
-        'Satisfy IRCC that the visit is temporary.',
-        'Siblings, aunts, uncles, cousins, nieces and nephews are not eligible.',
-        'Dependants cannot be included in the application.',
+        'Complete an immigration medical exam, if required.',
+        'Obtain qualifying Canadian medical insurance.',
+        'Demonstrate the visit is temporary.',
+        'Meet all applicable IRCC eligibility requirements.',
       ],
     },
     {
-      title: 'Who can be the host',
+      title: 'Who Can Be the Host',
       icon: 'building',
-      intro: 'The host must be the applicant\u2019s child or grandchild living in Canada.',
+      intro: 'The host must be the applicant\'s child or grandchild living in Canada and must meet the Super Visa eligibility requirements.',
       items: [
-        'Be at least 18 years old and live in Canada.',
-        'Be a Canadian citizen, permanent resident or registered Indian.',
-        'Meet or exceed the applicable minimum necessary income.',
-        'Provide a signed invitation letter and promise of financial support.',
-        'Provide evidence of the relationship to the parent or grandparent.',
-        'An eligible spouse or common-law partner may co-sign; other relatives cannot.',
+        'Be at least 18 years of age.',
+        'Be a Canadian citizen, permanent resident, or registered Indian.',
+        'Meet the Minimum Necessary Income (MNI).',
+        'Provide a signed invitation letter.',
+        'Demonstrate the family relationship.',
+        'Agree to provide financial support during the visit.',
       ],
     },
   ],
+
+  incomeRequirements: {
+    heading: 'Super Visa Income Requirements',
+    paragraphs: [
+      'To qualify for a Canadian Super Visa, the Canadian host must demonstrate that they have sufficient financial resources to support their visiting parent or grandparent during their stay in Canada. This is done by meeting the Minimum Necessary Income (MNI), commonly known as the Low Income Cut-Off (LICO), established by Immigration, Refugees and Citizenship Canada (IRCC).',
+      'The required income is based on the total number of people in the host\'s household, including the host, their spouse or partner, dependent children, and the parents or grandparents being invited. As the household size increases, so does the minimum income requirement.',
+      'To prove financial eligibility, hosts are generally required to provide supporting documents such as a Notice of Assessment (NOA), T4 slips, an employment letter, and recent pay stubs. Providing complete and accurate financial documentation helps IRCC assess the application more efficiently.',
+      'Calculating household size correctly is equally important, as errors can affect whether the income requirement is met. Careful preparation of financial documents can help reduce delays and strengthen the application.',
+    ],
+    closing:
+      'For a detailed explanation of the latest LICO income table, household size calculations, acceptable proof of income, and common mistakes, visit our Super Visa Income Requirements guide.',
+    link: { href: '/services/super-visa-income-requirement', label: 'Super Visa Income Requirements' },
+  },
 
   pillars: [
     {
@@ -136,20 +171,46 @@ const superVisa = {
   },
 
   documents: {
-    heading: 'Documents commonly required',
-    description:
-      'The responsible visa office may request additional evidence based on the applicant\u2019s country and circumstances.',
-    items: [
-      'Valid passport, digital photograph and completed application forms.',
-      'Invitation letter from the child or grandchild in Canada.',
-      'Proof of the family relationship.',
-      'Proof of the host\u2019s Canadian status, residence, income and family size.',
-      'Qualifying medical insurance policy.',
-      'Proof of the immigration medical examination.',
-      'Applicant\u2019s financial documents and travel history.',
-      'Purpose-of-visit explanation and evidence of home-country ties.',
-      'Marriage certificate and certified translations where applicable.',
-      'Country-specific documents and a representative form, if applicable.',
+    heading: 'Super Visa Required Documents',
+    paragraphs: [
+      'Preparing a complete and well-organized application is essential when applying for a Canada Super Visa. Immigration, Refugees and Citizenship Canada (IRCC) requires applicants and their Canadian host to provide supporting documents that establish eligibility, financial capacity, and the purpose of the visit.',
+      'While the exact documents may vary depending on your individual circumstances, a typical Super Visa application generally includes:',
+    ],
+    checklist: [
+      'Valid passport',
+      'Completed application forms',
+      'Digital photograph',
+      'Letter of invitation from the Canadian host',
+      "Proof of the host's Canadian citizenship or permanent resident status",
+      'Proof that the host meets the Minimum Necessary Income (MNI)',
+      'Valid Super Visa medical insurance from a Canadian insurance provider',
+      'Proof of relationship between the applicant and the host',
+      'Documents supporting the purpose of the visit',
+      'Additional documents requested by IRCC, if applicable',
+    ],
+    closing: [
+      'Providing accurate, complete, and up-to-date documents helps IRCC assess your application more efficiently and may reduce delays caused by missing information.',
+      'Depending on your personal circumstances, IRCC may request additional supporting documents during processing. Applicants should carefully review the document checklist and ensure all information provided is accurate and consistent.',
+    ],
+  },
+
+  invitationLetter: {
+    heading: 'Super Visa Invitation Letter',
+    paragraphs: [
+      'A Super Visa invitation letter is an important document that supports your application by confirming that a Canadian citizen or permanent resident is inviting their parent or grandparent to visit Canada. The letter helps IRCC understand the purpose of the visit and the host\'s commitment to providing financial support during the applicant\'s stay.',
+      'A well-prepared invitation letter should generally include:',
+    ],
+    checklist: [
+      "The host's full name and contact information",
+      "The applicant's full name and relationship to the host",
+      'The purpose and expected duration of the visit',
+      "A statement confirming the host's commitment to provide financial support",
+      "Information about the host's immigration status in Canada",
+      'Details of the household members, where applicable',
+    ],
+    closing: [
+      'The invitation letter should be clear, accurate, and consistent with the information provided in the Super Visa application and supporting documents. Depending on the circumstances, additional information may also be included to help explain the purpose of the visit.',
+      'Although the invitation letter is an important part of the application, it should be supported by other required documents, including proof of income, qualifying medical insurance, and evidence of the family relationship.',
     ],
   },
 
@@ -166,20 +227,24 @@ const superVisa = {
     { title: 'Submit the passport if approved', description: 'Follow the visa-issuance instructions carefully.' },
   ],
 
-  risks: [
-    'Incorrect family-size calculation or insufficient host income.',
-    'Missing details in the invitation letter.',
-    'Weak or unclear proof of relationship.',
-    'An insurance quote instead of a qualifying policy.',
-    'Missing medical-exam evidence.',
-    'Vague visit plans or weak evidence of temporary intent.',
-    'Inconsistent information across forms, letters and documents.',
-    'Missing translations or country-specific documents.',
-    'Unexplained previous refusals or travel-history concerns.',
-  ],
-
-  sponsorshipNote:
-    'A Super Visa is a temporary resident option, while the Parents and Grandparents Program is a permanent residence pathway. A person may apply for a Super Visa while a sponsorship application is being processed, provided they meet all Super Visa requirements.',
+  refusalReasons: {
+    heading: 'Super Visa Refusal Reasons',
+    paragraphs: [
+      'A Canada Super Visa application may be refused if the applicant does not meet the eligibility requirements or if the supporting documents do not satisfy Immigration, Refugees and Citizenship Canada (IRCC). Understanding the common reasons for refusal can help applicants prepare a stronger and more complete application.',
+      'Some of the most common Super Visa refusal reasons include:',
+    ],
+    items: [
+      'Insufficient proof that the Canadian host meets the Minimum Necessary Income (MNI).',
+      'Inadequate or non-compliant Super Visa medical insurance.',
+      'Incomplete, inconsistent, or missing supporting documents.',
+      'Failure to demonstrate the genuine purpose of the visit.',
+      'Insufficient evidence that the applicant will leave Canada at the end of their authorized stay.',
+      'Concerns regarding financial support, travel history, or ties to the home country.',
+      'Medical, criminal, or other admissibility issues, where applicable.',
+    ],
+    closing:
+      'Every application is assessed on its own merits, and a refusal does not necessarily prevent an applicant from reapplying. Reviewing the reasons for refusal, addressing any concerns raised by IRCC, and providing stronger supporting documentation may improve a future application.',
+  },
 
   faqGroups: [
     {

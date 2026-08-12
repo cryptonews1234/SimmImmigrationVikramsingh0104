@@ -19,9 +19,8 @@ function AccordionItem({ item, isOpen, onToggle }) {
           onClick={onToggle}
           aria-expanded={isOpen}
           aria-controls={`panel-${id}`}
-          className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+          className="flex w-full items-center gap-4 px-6 py-4.5 text-left"
         >
-          <span className="text-base font-semibold text-navy-900 dark:text-white">{item.question}</span>
           <motion.span
             animate={{ rotate: isOpen ? 45 : 0 }}
             transition={{ duration: 0.3 }}
@@ -30,6 +29,7 @@ function AccordionItem({ item, isOpen, onToggle }) {
           >
             +
           </motion.span>
+          <span className="flex-1 text-base font-semibold text-navy-900 dark:text-white">{item.question}</span>
         </button>
       </h3>
       <AnimatePresence initial={false}>
@@ -63,7 +63,7 @@ export default function Accordion({ items = [], allowMultiple = false, startClos
   };
 
   return (
-    <div className="space-y-2.5">
+    <div className="space-y-2">
       {items.map((item, index) => (
         <AccordionItem
           key={item.question}

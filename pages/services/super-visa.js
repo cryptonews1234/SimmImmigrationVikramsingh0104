@@ -16,23 +16,35 @@ import FaqTabs from '@/components/service/FaqTabs';
 const {
   meta,
   hero,
-  quickFacts,
   intro,
   whatIsIt,
   comparison,
   eligibility,
-  pillars,
+  incomeRequirements,
   insurance,
   documents,
-  process,
-  risks,
-  sponsorshipNote,
+  invitationLetter,
+  refusalReasons,
   faqGroups,
   help,
 } = superVisa;
 
 export default function SuperVisaPage() {
   const flatFaqs = faqGroups.flatMap((group) => group.items).slice(0, 12);
+  const sectionHeadingClass = 'max-w-none [&_h2]:font-sans [&_h2]:font-bold [&_h2]:tracking-[-0.01em]';
+
+  const onThisPageItems = [
+    { label: 'Super Visa Canada for parents and grandparents', href: '#overview' },
+    { label: 'What is a Super Visa?', href: '#what-is-a-super-visa' },
+    { label: 'Super Visa vs. Regular Visitor Visa', href: '#comparison' },
+    { label: 'Who Can Apply and Who Can Be the Host', href: '#eligibility' },
+    { label: 'Super Visa Income Requirements', href: '#income-requirements' },
+    { label: 'Super Visa medical insurance', href: '#insurance' },
+    { label: 'Super Visa Required Documents', href: '#documents' },
+    { label: 'Super Visa Invitation Letter', href: '#invitation-letter' },
+    { label: 'Super Visa Refusal Reasons', href: '#risks' },
+    { label: 'Super Visa frequently asked questions', href: '#faq' },
+  ];
 
   const schemas = [
     organizationSchema(),
@@ -50,35 +62,88 @@ export default function SuperVisaPage() {
       <ServiceHero
         eyebrow={hero.eyebrow}
         title={hero.title}
+        headline={hero.headline}
         titleAccent={hero.titleAccent}
+        titleSizeClassName="text-[clamp(1.55rem,2.9vw,2.4rem)]"
+        headlineSizeClassName="text-[clamp(1.35rem,2.5vw,2rem)]"
+        titleClassName="font-sans tracking-[-0.01em]"
+        headlineClassName="font-sans tracking-[-0.01em]"
+        formWrapperClassName="lg:-mt-4"
+        formCompact
         intro={hero.intro}
         updated={meta.updated}
         image={hero.image}
         imageAlt={hero.imageAlt}
-        facts={quickFacts}
       />
+
+      <section aria-label="On this page" className="bg-white pb-8 pt-0 dark:bg-ink-950">
+        <div className="mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
+          <div className="mx-auto max-w-[1100px] border-t border-ink-200 pt-5 dark:border-ink-800">
+            <h2 className="font-sans text-4xl font-bold tracking-[-0.01em] text-ink-700 dark:text-ink-100">On This Page</h2>
+            <ul className="mt-4 list-disc space-y-0.5 pl-6 text-lg leading-normal text-ink-600 dark:text-ink-300">
+              {onThisPageItems.map((item) => (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    className="transition-colors hover:text-maple-700 dark:hover:text-maple-300"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
 
       {/* Overview */}
       <Section id="overview">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <SectionHeading eyebrow="Overview" title={intro.heading} />
-          </div>
-          <Reveal className="space-y-5 lg:col-span-7">
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHeading
+            eyebrow="Overview"
+            title={intro.heading}
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <Reveal className="mt-8 space-y-5">
             {intro.paragraphs.map((text) => (
-              <p key={text.slice(0, 32)} className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+              <p key={text.slice(0, 32)} className="text-base leading-relaxed text-ink-600 dark:text-ink-300">
                 {text}
               </p>
             ))}
+
+            {intro.guideLead && (
+              <p className="text-base leading-relaxed text-ink-600 dark:text-ink-300">{intro.guideLead}</p>
+            )}
+
+            {intro.guideItems?.length > 0 && (
+              <ul className="list-disc space-y-0.5 pl-6 text-base leading-normal text-ink-600 dark:text-ink-300">
+                {intro.guideItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+
+            {intro.closing && <p className="text-base leading-relaxed text-ink-600 dark:text-ink-300">{intro.closing}</p>}
+
+            {(intro.helpLead || intro.helpText) && (
+              <p className="border-l-4 border-ink-200 pl-5 text-base leading-relaxed text-ink-600 dark:border-ink-700 dark:text-ink-300">
+                {intro.helpLead && <strong className="text-ink-900 dark:text-white">{intro.helpLead} </strong>}
+                {intro.helpText}
+              </p>
+            )}
           </Reveal>
         </div>
       </Section>
 
       {/* What is it + benefits */}
       <Section muted id="what-is-a-super-visa">
-        <SectionHeading eyebrow="The basics" title={whatIsIt.heading} />
-        <div className="mt-12 grid gap-12 lg:grid-cols-12">
-          <Reveal className="space-y-5 lg:col-span-7">
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHeading
+            eyebrow="The basics"
+            title={whatIsIt.heading}
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <Reveal className="mt-8 space-y-5">
             {whatIsIt.paragraphs.map((text) => (
               <p key={text.slice(0, 32)} className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">
                 {text}
@@ -91,9 +156,9 @@ export default function SuperVisaPage() {
             initial="hidden"
             whileInView="show"
             viewport={viewport}
-            className="space-y-3 rounded-3xl border border-ink-200 bg-white p-7 shadow-soft dark:border-ink-800 dark:bg-ink-900 lg:col-span-5"
+            className="mx-auto mt-8 max-w-[1200px] space-y-0.5 rounded-3xl border border-ink-200 bg-white p-7 shadow-soft dark:border-ink-800 dark:bg-ink-900"
           >
-            <li className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-maple-600">Main benefits</li>
+            <li className="mb-4 text-xs font-bold uppercase tracking-[0.18em] text-maple-600">Key features</li>
             {whatIsIt.benefits.map((benefit) => (
               <motion.li key={benefit} variants={fadeUp} className="flex gap-3 text-[15px] text-ink-600 dark:text-ink-300">
                 <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-maple-600" strokeWidth={2.6} />
@@ -106,16 +171,22 @@ export default function SuperVisaPage() {
 
       {/* Comparison table */}
       <Section id="comparison">
-        <SectionHeading eyebrow="Compare" title={comparison.heading} description={comparison.description} />
+        <div className="mx-auto max-w-[1320px]">
+          <SectionHeading
+            eyebrow="Compare"
+            title={comparison.heading}
+            description={comparison.description}
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
 
-        <Reveal className="mt-12 overflow-hidden rounded-3xl border border-ink-200 shadow-soft dark:border-ink-800">
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[36rem] border-collapse text-left">
+          <Reveal className="mt-12 overflow-hidden rounded-3xl border border-ink-200 shadow-soft dark:border-ink-800">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[36rem] border-collapse text-left">
               <thead>
                 <tr className="bg-maple-gradient text-white">
-                  <th className="px-6 py-4 text-sm font-bold">Feature</th>
-                  <th className="px-6 py-4 text-sm font-bold">Visitor Visa</th>
-                  <th className="px-6 py-4 text-sm font-bold">Super Visa</th>
+                  <th className="px-6 py-3 text-sm font-bold leading-tight">Feature</th>
+                  <th className="px-6 py-3 text-sm font-bold leading-tight">Visitor Visa</th>
+                  <th className="px-6 py-3 text-sm font-bold leading-tight">Super Visa</th>
                 </tr>
               </thead>
               <tbody>
@@ -128,33 +199,39 @@ export default function SuperVisaPage() {
                     transition={{ delay: index * 0.06, duration: 0.5 }}
                     className="border-t border-ink-200 bg-white transition-colors hover:bg-maple-50/60 dark:border-ink-800 dark:bg-ink-900 dark:hover:bg-ink-800/60"
                   >
-                    <td className="px-6 py-4 text-sm font-semibold text-ink-900 dark:text-white">{row.feature}</td>
-                    <td className="px-6 py-4 text-sm text-ink-500 dark:text-ink-300">{row.visitor}</td>
-                    <td className="px-6 py-4 text-sm font-semibold text-maple-700 dark:text-maple-300">{row.superVisa}</td>
+                    <td className="px-6 py-3 text-sm font-semibold leading-snug text-ink-900 dark:text-white">{row.feature}</td>
+                    <td className="px-6 py-3 text-sm leading-snug text-ink-500 dark:text-ink-300">{row.visitor}</td>
+                    <td className="px-6 py-3 text-sm font-semibold leading-snug text-maple-700 dark:text-maple-300">{row.superVisa}</td>
                   </motion.tr>
                 ))}
               </tbody>
-            </table>
-          </div>
-        </Reveal>
+              </table>
+            </div>
+          </Reveal>
+        </div>
       </Section>
 
       {/* Eligibility */}
       <Section muted id="eligibility">
-        <SectionHeading eyebrow="Eligibility" title="Who can apply, and who can host" />
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading
+            eyebrow="Eligibility"
+            title="Who Can Apply and Who Can Be the Host"
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <div className="mt-8 space-y-10">
           {eligibility.map((block, index) => (
-            <Reveal key={block.title} delay={index * 0.1}>
-              <div className="h-full rounded-3xl border border-ink-200 bg-white p-8 shadow-soft transition-shadow hover:shadow-lift dark:border-ink-800 dark:bg-ink-900">
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-maple-gradient text-white shadow-soft">
-                  <Icon name={block.icon} className="h-6 w-6" />
-                </span>
-                <h3 className="mt-6 font-display text-2xl font-bold text-ink-900 dark:text-white">{block.title}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-ink-500 dark:text-ink-300">{block.intro}</p>
-                <ul className="mt-6 space-y-3">
+            <Reveal key={block.title} delay={index * 0.08}>
+              <div className={index > 0 ? 'border-t border-ink-200 pt-8 dark:border-ink-800' : ''}>
+                <h3 className="flex items-center gap-3 font-sans text-3xl font-bold leading-tight text-ink-900 dark:text-white">
+                  <Icon name={block.icon} className="h-5 w-5 shrink-0 text-maple-600" />
+                  {block.title}
+                </h3>
+                <p className="mt-3 text-lg leading-relaxed text-ink-600 dark:text-ink-300">{block.intro}</p>
+                <ul className="mt-6 space-y-0.5">
                   {block.items.map((item) => (
-                    <li key={item} className="flex gap-3 text-[15px] text-ink-600 dark:text-ink-300">
-                      <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-maple-600" strokeWidth={2.6} />
+                    <li key={item} className="flex gap-3 text-lg leading-normal text-ink-700 dark:text-ink-200">
+                      <Icon name="check" className="mt-1 h-4 w-4 shrink-0 text-maple-600" strokeWidth={2.8} />
                       {item}
                     </li>
                   ))}
@@ -162,36 +239,45 @@ export default function SuperVisaPage() {
               </div>
             </Reveal>
           ))}
+          </div>
         </div>
       </Section>
 
-      {/* Four pillars */}
-      <Section id="requirements">
-        <SectionHeading
-          eyebrow="What officers look at"
-          title="The four things that decide most Super Visa files"
-          description="Get these right and the rest of the application usually follows. Get one wrong and it is the most common reason for a refusal."
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {pillars.map((pillar, index) => (
-            <Reveal key={pillar.title} delay={index * 0.08}>
-              <div className="group h-full rounded-3xl border border-ink-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-maple-200 hover:shadow-lift dark:border-ink-800 dark:bg-ink-900">
-                <div className="flex items-center gap-4">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-maple-50 text-maple-600 transition-colors group-hover:bg-maple-gradient group-hover:text-white dark:bg-ink-800">
-                    <Icon name={pillar.icon} className="h-5 w-5" />
-                  </span>
-                  <h3 className="font-display text-xl font-bold text-ink-900 dark:text-white">{pillar.title}</h3>
-                </div>
-                <p className="mt-5 text-[15px] leading-relaxed text-ink-500 dark:text-ink-300">{pillar.body}</p>
-              </div>
-            </Reveal>
-          ))}
+      <Section id="income-requirements">
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHeading
+            eyebrow="Financial proof"
+            title={incomeRequirements.heading}
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <Reveal className="mt-8 space-y-5">
+            {incomeRequirements.paragraphs.map((text) => (
+              <p key={text.slice(0, 40)} className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+                {text}
+              </p>
+            ))}
+            <p className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">{incomeRequirements.closing}</p>
+            <Button
+              href={incomeRequirements.link.href}
+              variant="primary"
+              size="md"
+              className="w-fit shadow-soft"
+            >
+              Learn more about Super Visa Income Requirements →
+            </Button>
+          </Reveal>
         </div>
       </Section>
 
       {/* Insurance */}
       <Section muted id="insurance">
-        <div className="grid items-center gap-14 lg:grid-cols-12">
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading
+            eyebrow="Insurance"
+            title={insurance.heading}
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <div className="mt-12 grid items-center gap-14 lg:grid-cols-12">
           <Reveal className="lg:col-span-6">
             <div className="relative overflow-hidden rounded-3xl border border-ink-200 shadow-lift dark:border-ink-800">
               <Image
@@ -213,14 +299,13 @@ export default function SuperVisaPage() {
           </Reveal>
 
           <div className="lg:col-span-6">
-            <SectionHeading eyebrow="Insurance" title={insurance.heading} />
             <Reveal delay={0.1}>
               {insurance.paragraphs.map((text) => (
                 <p key={text.slice(0, 24)} className="mt-6 text-lg leading-relaxed text-ink-600 dark:text-ink-300">
                   {text}
                 </p>
               ))}
-              <ul className="mt-7 space-y-3">
+              <ul className="mt-7 space-y-0.5">
                 {insurance.requirements.map((item) => (
                   <li key={item} className="flex gap-3 text-[15px] text-ink-600 dark:text-ink-300">
                     <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-maple-600" strokeWidth={2.6} />
@@ -237,106 +322,117 @@ export default function SuperVisaPage() {
               </p>
             </Reveal>
           </div>
+          </div>
+          <Button href="/services/super-visa-insurance-guide" size="md" withArrow className="mt-8 w-fit shadow-soft">
+            Learn more about Super Visa Medical Insurance
+          </Button>
         </div>
       </Section>
 
       {/* Documents */}
       <Section id="documents">
-        <SectionHeading eyebrow="Checklist" title={documents.heading} description={documents.description} />
-        <motion.ul
-          variants={stagger(0.05)}
-          initial="hidden"
-          whileInView="show"
-          viewport={viewport}
-          className="mt-12 grid gap-4 sm:grid-cols-2"
-        >
-          {documents.items.map((item, index) => (
-            <motion.li
-              key={item}
-              variants={fadeUp}
-              className="flex items-start gap-4 rounded-2xl border border-ink-200 bg-white p-5 transition-colors hover:border-maple-200 dark:border-ink-800 dark:bg-ink-900"
-            >
-              <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-maple-50 text-xs font-bold text-maple-600 dark:bg-ink-800 dark:text-maple-300">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <span className="text-[15px] leading-relaxed text-ink-600 dark:text-ink-300">{item}</span>
-            </motion.li>
-          ))}
-        </motion.ul>
-      </Section>
-
-      {/* Process */}
-      <Section muted id="process">
-        <SectionHeading
-          eyebrow="Step by step"
-          title="The Super Visa application process"
-          description="Ten stages, from the first eligibility check to submitting the passport for visa issuance."
-        />
-        <motion.ol
-          variants={stagger(0.06)}
-          initial="hidden"
-          whileInView="show"
-          viewport={viewport}
-          className="mt-12 grid gap-5 md:grid-cols-2"
-        >
-          {process.map((step, index) => (
-            <motion.li
-              key={step.title}
-              variants={fadeUp}
-              className="group relative overflow-hidden rounded-2xl border border-ink-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift dark:border-ink-800 dark:bg-ink-900"
-            >
-              <span className="absolute right-4 top-3 font-display text-5xl font-extrabold text-ink-100 transition-colors group-hover:text-maple-100 dark:text-ink-800 dark:group-hover:text-maple-900/40">
-                {index + 1}
-              </span>
-              <h3 className="relative font-display text-lg font-bold text-ink-900 dark:text-white">{step.title}</h3>
-              <p className="relative mt-2 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{step.description}</p>
-            </motion.li>
-          ))}
-        </motion.ol>
-      </Section>
-
-      {/* Refusal risks */}
-      <Section id="risks">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <SectionHeading eyebrow="Avoid these" title="Common problems and refusal risks" />
-            <Reveal delay={0.1}>
-              <p className="mt-6 text-[15px] leading-relaxed text-ink-500 dark:text-ink-300">{sponsorshipNote}</p>
-              <Button href="/#contact" size="md" className="mt-7" withArrow>
-                Get a refusal review
-              </Button>
-            </Reveal>
-          </div>
-
-          <motion.ul
-            variants={stagger(0.05)}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewport}
-            className="grid gap-3 lg:col-span-7"
-          >
-            {risks.map((risk) => (
-              <motion.li
-                key={risk}
-                variants={fadeUp}
-                className="flex items-start gap-3 rounded-xl border border-ink-200 bg-ink-50/60 px-5 py-4 text-[15px] text-ink-600 dark:border-ink-800 dark:bg-ink-900/50 dark:text-ink-300"
-              >
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-maple-600" />
-                {risk}
-              </motion.li>
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading
+            eyebrow="Checklist"
+            title={documents.heading}
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <Reveal className="mt-8 space-y-5">
+            {documents.paragraphs?.map((text) => (
+              <p key={text.slice(0, 36)} className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+                {text}
+              </p>
             ))}
-          </motion.ul>
+
+            {documents.checklist?.length > 0 && (
+              <ul className="list-disc space-y-0 pl-7 text-lg leading-normal text-ink-600 dark:text-ink-300">
+                {documents.checklist.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+
+            {documents.closing?.map((text) => (
+              <p key={text.slice(0, 36)} className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+                {text}
+              </p>
+            ))}
+          </Reveal>
+        </div>
+      </Section>
+
+      <Section muted id="invitation-letter">
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading
+            eyebrow="Invitation letter"
+            title={invitationLetter.heading}
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <Reveal className="mt-8 space-y-5">
+            {invitationLetter.paragraphs?.map((text) => (
+              <p key={text.slice(0, 36)} className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+                {text}
+              </p>
+            ))}
+
+            {invitationLetter.checklist?.length > 0 && (
+              <ul className="list-disc space-y-0 pl-7 text-lg leading-normal text-ink-600 dark:text-ink-300">
+                {invitationLetter.checklist.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+
+            {invitationLetter.closing?.map((text) => (
+              <p key={text.slice(0, 36)} className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+                {text}
+              </p>
+            ))}
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* Refusal reasons */}
+      <Section id="risks">
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading
+            eyebrow="Refusal reasons"
+            title={refusalReasons.heading}
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <Reveal className="mt-8 space-y-5">
+            {refusalReasons.paragraphs?.map((text) => (
+              <p key={text.slice(0, 36)} className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+                {text}
+              </p>
+            ))}
+
+            {refusalReasons.items?.length > 0 && (
+              <ul className="list-disc space-y-0 pl-7 text-lg leading-normal text-ink-600 dark:text-ink-300">
+                {refusalReasons.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
+
+            {refusalReasons.closing && (
+              <p className="text-lg leading-relaxed text-ink-600 dark:text-ink-300">{refusalReasons.closing}</p>
+            )}
+          </Reveal>
         </div>
       </Section>
 
       {/* FAQ */}
       <Section muted id="faq">
-        <SectionHeading
-          eyebrow="Answers"
-          title="Super Visa frequently asked questions"
-          description="Pick a category to jump straight to the questions families ask us most."
-        />
-        <FaqTabs groups={faqGroups} />
+        <div className="mx-auto max-w-[1200px]">
+          <SectionHeading
+            eyebrow="Answers"
+            title="Super Visa frequently asked questions"
+            description="Pick a category to jump straight to the questions families ask us most."
+            className={`${sectionHeadingClass} [&_h2]:text-display-md`}
+          />
+          <FaqTabs groups={faqGroups} />
+        </div>
       </Section>
 
       <ServiceCta

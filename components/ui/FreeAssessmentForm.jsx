@@ -8,7 +8,7 @@ import { validateContactForm } from '@/utils/validation';
 
 const initialValues = { name: '', email: '', phone: '', service: '', message: '' };
 
-export default function FreeAssessmentForm() {
+export default function FreeAssessmentForm({ compact = false }) {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
@@ -83,17 +83,42 @@ export default function FreeAssessmentForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-3xl border border-ink-200 bg-white p-7 shadow-soft dark:border-ink-800 dark:bg-ink-900 sm:p-9"
+      className={`rounded-3xl border border-white/70 bg-white/90 shadow-[0_24px_60px_rgba(15,23,42,0.1)] backdrop-blur-sm dark:border-ink-800 dark:bg-ink-900 ${
+        compact ? 'p-6 sm:p-7' : 'p-7 sm:p-9'
+      }`}
     >
       <h3 className="text-2xl">Get Free Assessment</h3>
       <p className="mt-2 text-sm text-ink-500 dark:text-ink-300">
         Tell us where you are in the process. We reply within one business day.
       </p>
 
-      <div className="mt-7 grid gap-5 sm:grid-cols-2">
-        <Field id="fa-name" label="Full name" placeholder="Jaspreet Kaur" value={values.name} onChange={update('name')} error={errors.name} autoComplete="name" required />
-        <Field id="fa-email" type="email" label="Email" placeholder="you@email.com" value={values.email} onChange={update('email')} error={errors.email} autoComplete="email" required />
-        <Field id="fa-phone" type="tel" label="Phone" placeholder="+1 647 000 0000" value={values.phone} onChange={update('phone')} error={errors.phone} autoComplete="tel" hint="Include your country code." required />
+      <div className={`grid sm:grid-cols-2 ${compact ? 'mt-5 gap-4' : 'mt-7 gap-5'}`}>
+        <Field
+          id="fa-name"
+          label="Full name"
+          placeholder="Jaspreet Kaur"
+          value={values.name}
+          onChange={update('name')}
+          error={errors.name}
+          autoComplete="name"
+          className="sm:col-span-2"
+          inputClassName={compact ? 'py-2.5' : undefined}
+          required
+        />
+        <Field
+          id="fa-email"
+          type="email"
+          label="Email"
+          placeholder="you@email.com"
+          value={values.email}
+          onChange={update('email')}
+          error={errors.email}
+          autoComplete="email"
+          className="sm:col-span-2"
+          inputClassName={compact ? 'py-2.5' : undefined}
+          required
+        />
+        <Field id="fa-phone" type="tel" label="Phone" placeholder="+1 647 000 0000" value={values.phone} onChange={update('phone')} error={errors.phone} autoComplete="tel" hint="Include your country code." inputClassName={compact ? 'py-2.5' : undefined} required />
         <Field
           id="fa-service"
           as="select"
@@ -102,6 +127,7 @@ export default function FreeAssessmentForm() {
           onChange={update('service')}
           error={errors.service}
           options={['Select a service', ...services.map((s) => s.title), 'Refusal review', 'Something else']}
+          inputClassName={compact ? 'py-2.5' : undefined}
           required
         />
         <Field
@@ -113,6 +139,7 @@ export default function FreeAssessmentForm() {
           onChange={update('message')}
           error={errors.message}
           className="sm:col-span-2"
+          inputClassName={compact ? 'min-h-[104px] py-2.5' : undefined}
           required
         />
       </div>
@@ -131,13 +158,13 @@ export default function FreeAssessmentForm() {
       </div>
 
       {status === 'error' && (
-        <p className="mt-5 flex items-center gap-2 rounded-xl border border-maple-200 bg-maple-50 px-4 py-3 text-sm text-maple-700 dark:border-maple-900/60 dark:bg-maple-950/30 dark:text-maple-300">
+        <p className={`${compact ? 'mt-4' : 'mt-5'} flex items-center gap-2 rounded-xl border border-maple-200 bg-maple-50 px-4 py-3 text-sm text-maple-700 dark:border-maple-900/60 dark:bg-maple-950/30 dark:text-maple-300`}>
           <Icon name="shield" className="h-4 w-4 shrink-0" />
           Something went wrong sending your request. Please try again, or call us directly.
         </p>
       )}
 
-      <div className="mt-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className={`flex flex-col sm:flex-row sm:items-center sm:justify-between ${compact ? 'mt-5 gap-3' : 'mt-7 gap-4'}`}>
         <p className="flex items-center gap-2 text-xs text-ink-400">
           <Icon name="shield" className="h-4 w-4 text-maple-600" />
           Confidential. Never shared with third parties.
@@ -151,7 +178,7 @@ export default function FreeAssessmentForm() {
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.2 }}
             >
-              {status === 'sending' ? 'Sending\u2026' : 'Get Free Assessment'}
+              {status === 'sending' ? 'Sending\u2026' : 'Submit'}
             </motion.span>
           </AnimatePresence>
         </Button>

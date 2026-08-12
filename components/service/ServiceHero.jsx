@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { fadeUp, stagger } from '@/lib/motion';
 import Icon from '@/components/ui/Icon';
 import FreeAssessmentForm from '@/components/ui/FreeAssessmentForm';
+import cn from '@/utils/cn';
 
 /**
  * Service page hero — light layout:
@@ -12,7 +13,12 @@ import FreeAssessmentForm from '@/components/ui/FreeAssessmentForm';
 export default function ServiceHero({
   eyebrow,
   title,
+  headline,
   titleAccent,
+  titleClassName,
+  headlineClassName,
+  titleSizeClassName,
+  headlineSizeClassName,
   intro,
   updated,
   image,
@@ -20,6 +26,8 @@ export default function ServiceHero({
   facts = [],
   crumb,
   breadcrumbs,
+  formWrapperClassName,
+  formCompact = false,
 }) {
   const trail = [
     { label: 'Home', href: '/' },
@@ -28,11 +36,11 @@ export default function ServiceHero({
   ];
 
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-navy-950">
-      <div className="relative mx-auto w-full px-4 py-10 sm:px-6 md:px-8 lg:px-12 lg:py-12 xl:px-20">
-        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
+    <section className="relative overflow-hidden bg-[#FAF8F4] dark:bg-navy-950">
+      <div className="relative mx-auto w-full max-w-[1320px] px-4 py-10 sm:px-6 md:px-8 lg:px-14 lg:py-12 xl:px-24">
+        <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-8">
           {/* LEFT — light column */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-7">
             {/* Breadcrumb */}
             <motion.nav
               initial={{ opacity: 0 }}
@@ -71,19 +79,36 @@ export default function ServiceHero({
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-5 font-display text-[clamp(1.9rem,3.8vw,3rem)] font-extrabold leading-[1.07] text-navy-900 dark:text-white"
+                className={cn(
+                  'mt-5 font-display font-extrabold leading-[1.07] text-navy-900 dark:text-white',
+                  titleSizeClassName || 'text-[clamp(1.9rem,3.8vw,3rem)]',
+                  titleClassName
+                )}
               >
                 {title}
                 {titleAccent && <span className="block text-maple-600 dark:text-maple-400">{titleAccent}</span>}
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="mt-5 max-w-xl text-base leading-relaxed text-ink-600 dark:text-ink-300">
+              {headline && (
+                <motion.h2
+                  variants={fadeUp}
+                  className={cn(
+                    'mt-4 font-display font-extrabold leading-[1.12] text-maple-600 dark:text-maple-400',
+                    headlineSizeClassName || 'text-[clamp(1.6rem,3vw,2.4rem)]',
+                    headlineClassName
+                  )}
+                >
+                  {headline}
+                </motion.h2>
+              )}
+
+              <motion.p variants={fadeUp} className="mt-5 max-w-2xl text-base leading-relaxed text-ink-600 dark:text-ink-300">
                 {intro}
               </motion.p>
 
               {/* Photo card */}
-              <motion.div variants={fadeUp} className="mt-8 overflow-hidden rounded-2xl">
-                <div className="relative h-56 w-full sm:h-64 lg:h-72">
+              <motion.div variants={fadeUp} className="mt-8 overflow-hidden rounded-3xl border border-white/60 bg-white p-2 shadow-[0_18px_50px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-ink-900 dark:shadow-none">
+                <div className="relative h-56 w-full overflow-hidden rounded-[1.1rem] sm:h-64 lg:h-72">
                   <Image
                     src={image}
                     alt={imageAlt || ''}
@@ -118,9 +143,9 @@ export default function ServiceHero({
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-6"
+            className={cn('lg:col-span-5', formWrapperClassName)}
           >
-            <FreeAssessmentForm />
+            <FreeAssessmentForm compact={formCompact} />
           </motion.div>
         </div>
       </div>

@@ -12,6 +12,21 @@ import ServiceHero from '@/components/service/ServiceHero';
 import ServiceCta from '@/components/service/ServiceCta';
 
 export default function ServicePage({ slug, data }) {
+  const isSuperVisaClusterPage = slug.startsWith('super-visa-');
+  const isSuperVisaIncomeRequirementPage = slug === 'super-visa-income-requirement';
+  const sectionHeadingClass = isSuperVisaClusterPage
+    ? 'max-w-none [&_h2]:font-sans [&_h2]:font-bold [&_h2]:tracking-[-0.01em] [&_h2]:text-display-md'
+    : 'text-[clamp(1.65rem,3.2vw,2.55rem)] leading-[1.12]';
+  const heroTitleClassName = isSuperVisaClusterPage ? 'font-sans tracking-[-0.01em]' : undefined;
+  const heroTitleSizeClassName = isSuperVisaClusterPage
+    ? 'text-[clamp(1.55rem,2.9vw,2.4rem)]'
+    : undefined;
+  const formWrapperClassName = isSuperVisaClusterPage ? 'lg:-mt-6' : undefined;
+  const formCompact = isSuperVisaClusterPage;
+  const subheadingClassName = isSuperVisaClusterPage
+    ? 'font-sans text-3xl font-bold tracking-[-0.01em]'
+    : 'font-display text-lg font-bold';
+
   const {
     meta,
     hero,
@@ -27,6 +42,15 @@ export default function ServicePage({ slug, data }) {
     related = [],
     category,
   } = data;
+  const heroFacts = isSuperVisaClusterPage ? [] : quickFacts;
+  const proseAnchorId = (heading) =>
+    heading
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+  const onThisPageItems = isSuperVisaIncomeRequirementPage
+    ? prose.map((block) => ({ label: block.heading, href: `#${proseAnchorId(block.heading)}` }))
+    : [];
 
   const path = `/services/${slug}`;
   const cat = categoryBreadcrumb[category];
@@ -49,13 +73,15 @@ export default function ServicePage({ slug, data }) {
       id: 'overview',
       render: (muted) => (
         <Section key="overview" id="overview" muted={muted}>
-          <div className="space-y-14">
+          <div className="mx-auto max-w-[1320px] space-y-16">
             {prose.map((block, index) => (
-              <div key={block.heading} className="grid items-start gap-x-12 gap-y-5 lg:grid-cols-2">
-                <div>
-                  <SectionHeading eyebrow={index === 0 ? 'Overview' : undefined} title={block.heading} />
-                </div>
-                <Reveal className="space-y-5">
+              <div key={block.heading} id={proseAnchorId(block.heading)} className="scroll-mt-24 space-y-5">
+                <SectionHeading
+                  eyebrow={index === 0 ? 'Overview' : undefined}
+                  title={block.heading}
+                  className={sectionHeadingClass}
+                />
+                <Reveal className="space-y-5 max-w-[1100px]">
                   {(block.paragraphs || []).map((text) => (
                     <p key={text.slice(0, 30)} className="text-[17px] leading-relaxed text-ink-600 dark:text-ink-300">
                       {text}
@@ -71,46 +97,53 @@ export default function ServicePage({ slug, data }) {
                       ))}
                     </ul>
                   )}
+                  {block.table && (
+                    <div className="overflow-hidden rounded-2xl border border-ink-200 bg-white dark:border-ink-800 dark:bg-ink-900">
+                      <table className="w-full border-collapse text-left text-[15px]">
+                        <thead className="bg-ink-50 dark:bg-ink-800/60">
+                          <tr>
+                            {block.table.headers.map((header) => (
+                              <th
+                                key={header}
+                                className="px-5 py-3 font-semibold text-ink-900 dark:text-white"
+                              >
+                                {header}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {block.table.rows.map((row, rowIndex) => (
+                            <tr
+                              key={row[0]}
+                              className={rowIndex === block.table.rows.length - 1 ? 'border-t border-ink-200 bg-white dark:border-ink-800 dark:bg-ink-900' : 'border-t border-ink-200 bg-white dark:border-ink-800 dark:bg-ink-900'}
+                            >
+                              {row.map((cell, cellIndex) => (
+                                <td
+                                  key={cellIndex}
+                                  className={`px-5 py-3 text-ink-600 dark:text-ink-300 ${cellIndex === row.length - 1 ? 'text-right font-medium text-ink-900 dark:text-white' : ''}`}
+                                >
+                                  {cell}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                  {block.closing && (
+                    <p className="border-l-4 border-ink-200 pl-5 text-[17px] leading-relaxed text-ink-600 dark:border-ink-700 dark:text-ink-300">
+                      {block.closing}
+                    </p>
+                  )}
+                  {block.faqs && (
+                    <div className="pt-2">
+                      <Accordion items={block.faqs} allowMultiple startClosed />
+                    </div>
+                  )}
                 </Reveal>
               </div>
-            ))}
-          </div>
-        </Section>
-      ),
-    });
-  }
-
-  if (cards.length > 0) {
-    sections.push({
-      id: 'details',
-      render: (muted) => (
-        <Section key="details" id="details" muted={muted}>
-          <SectionHeading eyebrow="The detail" title="What you need to know" />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {cards.map((card, index) => (
-              <Reveal key={card.title} delay={index * 0.07}>
-                <div className="group h-full rounded-3xl border border-ink-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-maple-200 hover:shadow-lift dark:border-ink-800 dark:bg-ink-900">
-                  <div className="flex items-center gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-maple-50 text-maple-600 transition-colors group-hover:bg-maple-gradient group-hover:text-white dark:bg-ink-800">
-                      <Icon name={card.icon} className="h-5 w-5" />
-                    </span>
-                    <h3 className="font-display text-xl font-bold text-ink-900 dark:text-white">{card.title}</h3>
-                  </div>
-                  {card.body && (
-                    <p className="mt-5 text-[15px] leading-relaxed text-ink-500 dark:text-ink-300">{card.body}</p>
-                  )}
-                  {card.items && (
-                    <ul className="mt-5 space-y-3">
-                      {card.items.map((item) => (
-                        <li key={item} className="flex gap-3 text-[15px] text-ink-600 dark:text-ink-300">
-                          <Icon name="check" className="mt-0.5 h-4 w-4 shrink-0 text-maple-600" strokeWidth={2.6} />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </Reveal>
             ))}
           </div>
         </Section>
@@ -123,8 +156,13 @@ export default function ServicePage({ slug, data }) {
       id: 'comparison',
       render: (muted) => (
         <Section key="comparison" id="comparison" muted={muted}>
-          <SectionHeading eyebrow="Compare" title={comparison.heading} description={comparison.description} />
-          <Reveal className="mt-12 overflow-hidden rounded-3xl border border-ink-200 shadow-soft dark:border-ink-800">
+          <SectionHeading
+            eyebrow="Compare"
+            title={comparison.heading}
+            description={comparison.description}
+            className={sectionHeadingClass}
+          />
+          <Reveal className="mx-auto mt-12 max-w-[1320px] overflow-hidden rounded-3xl border border-ink-200 shadow-soft dark:border-ink-800">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[36rem] border-collapse text-left">
                 <thead>
@@ -165,8 +203,13 @@ export default function ServicePage({ slug, data }) {
       id: 'documents',
       render: (muted) => (
         <Section key="documents" id="documents" muted={muted}>
-          <SectionHeading eyebrow="Checklist" title={documents.heading} description={documents.description} />
-          <ul className="mt-12 grid gap-4 sm:grid-cols-2">
+          <SectionHeading
+            eyebrow="Checklist"
+            title={documents.heading}
+            description={documents.description}
+            className={sectionHeadingClass}
+          />
+          <ul className="mx-auto mt-12 grid max-w-[1320px] gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {documents.items.map((item, index) => (
               <motion.li
                 key={item}
@@ -188,13 +231,13 @@ export default function ServicePage({ slug, data }) {
     });
   }
 
- if (process.length > 0) {
+  if (process.length > 0) {
     sections.push({
       id: 'process',
       render: (muted) => (
         <Section key="process" id="process" muted={muted}>
-          <SectionHeading eyebrow="Step by step" title="How the process works" />
-          <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionHeading eyebrow="Step by step" title="How the process works" className={sectionHeadingClass} />
+          <ol className="mx-auto mt-12 grid max-w-[1320px] gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {process.map((step, index) => (
               <motion.li
                 key={step.title}
@@ -207,7 +250,7 @@ export default function ServicePage({ slug, data }) {
                 <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl bg-maple-gradient font-display text-base font-extrabold text-white shadow-soft">
                   {index + 1}
                 </span>
-                <h3 className="relative font-display text-lg font-bold text-ink-900 dark:text-white">{step.title}</h3>
+                <h3 className={`relative text-ink-900 dark:text-white ${subheadingClassName}`}>{step.title}</h3>
                 <p className="relative mt-2 text-sm leading-relaxed text-ink-500 dark:text-ink-300">
                   {step.description}
                 </p>
@@ -223,8 +266,13 @@ export default function ServicePage({ slug, data }) {
       id: 'why-us',
       render: (muted) => (
         <Section key="why-us" id="why-us" muted={muted}>
-          <SectionHeading eyebrow="Why us" title="What you get working with Simmi Immigration" align="center" />
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <SectionHeading
+            eyebrow="Why us"
+            title="What you get working with Simmi Immigration"
+            align="center"
+            className={sectionHeadingClass}
+          />
+          <div className="mx-auto mt-12 grid max-w-[1320px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {why.map((item, index) => (
               <motion.div
                 key={item.letter}
@@ -237,7 +285,7 @@ export default function ServicePage({ slug, data }) {
                 <span className="mx-auto flex h-11 w-11 items-center justify-center rounded-full bg-maple-gradient font-display text-base font-extrabold text-white shadow-soft">
                   {item.letter}
                 </span>
-                <h3 className="mt-5 font-display text-base font-bold text-ink-900 dark:text-white">{item.title}</h3>
+                <h3 className={`mt-5 text-ink-900 dark:text-white ${subheadingClassName}`}>{item.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-500 dark:text-ink-300">{item.body}</p>
               </motion.div>
             ))}
@@ -252,11 +300,17 @@ export default function ServicePage({ slug, data }) {
       id: 'faq',
       render: (muted) => (
         <Section key="faq" id="faq" muted={muted}>
-          <SectionHeading eyebrow="Answers" title="Frequently asked questions" />
-          <div className="mt-12 grid gap-x-8 gap-y-4 lg:grid-cols-2">
-            {faqs.map((item) => (
-              <Accordion key={item.q || item.question} items={[item]} allowMultiple />
-            ))}
+          <SectionHeading
+            eyebrow="Answers"
+            title="Frequently asked questions"
+            className={sectionHeadingClass}
+          />
+          <div className="mx-auto mt-12 max-w-[1320px]">
+            <div className="grid gap-x-8 gap-y-4 lg:grid-cols-2">
+              {faqs.map((item) => (
+                <Accordion key={item.q || item.question} items={[item]} allowMultiple />
+              ))}
+            </div>
           </div>
         </Section>
       ),
@@ -271,13 +325,36 @@ export default function ServicePage({ slug, data }) {
         eyebrow={hero.eyebrow}
         title={hero.title}
         titleAccent={hero.titleAccent}
+        titleClassName={heroTitleClassName}
+        titleSizeClassName={heroTitleSizeClassName}
+        formWrapperClassName={formWrapperClassName}
+        formCompact={formCompact}
         intro={hero.intro}
         updated={meta.updated}
         image={hero.image}
         imageAlt={hero.imageAlt}
-        facts={quickFacts}
+        facts={heroFacts}
         breadcrumbs={breadcrumbs}
       />
+
+      {isSuperVisaIncomeRequirementPage && onThisPageItems.length > 0 && (
+        <section aria-label="On this page" className="bg-white pb-8 pt-0 dark:bg-ink-950">
+          <div className="mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
+            <div className="mx-auto max-w-[1100px] border-t border-ink-200 pt-5 dark:border-ink-800">
+              <h2 className="font-sans text-4xl font-bold tracking-[-0.01em] text-ink-700 dark:text-ink-100">On This Page</h2>
+              <ul className="mt-4 list-disc space-y-0.5 pl-6 text-lg leading-normal text-ink-600 dark:text-ink-300">
+                {onThisPageItems.map((item) => (
+                  <li key={item.href}>
+                    <a href={item.href} className="transition-colors hover:text-maple-700 dark:hover:text-maple-300">
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
 
       {sections.map((section, index) => section.render(index % 2 === 1))}
 

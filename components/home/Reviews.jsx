@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Section from '@/components/ui/Section';
 import SectionHeading from '@/components/ui/SectionHeading';
@@ -11,12 +11,35 @@ import { fadeUp, viewport } from '@/lib/motion';
 
 export default function Reviews() {
   const trackRef = useRef(null);
+  const pausedRef = useRef(false);
 
   const scrollBy = (direction) => {
     const track = trackRef.current;
     if (!track) return;
     track.scrollBy({ left: direction * (track.clientWidth * 0.8), behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return undefined;
+
+    const interval = setInterval(() => {
+      if (pausedRef.current) return;
+
+      const maxScrollLeft = track.scrollWidth - track.clientWidth;
+      const step = Math.max(track.clientWidth * 0.82, 320);
+      const nextLeft = track.scrollLeft + step;
+
+      if (nextLeft >= maxScrollLeft - 4) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+        return;
+      }
+
+      track.scrollTo({ left: nextLeft, behavior: 'smooth' });
+    }, 4200);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Section id="reviews">
@@ -67,6 +90,18 @@ export default function Reviews() {
 
       <div
         ref={trackRef}
+        onMouseEnter={() => {
+          pausedRef.current = true;
+        }}
+        onMouseLeave={() => {
+          pausedRef.current = false;
+        }}
+        onFocusCapture={() => {
+          pausedRef.current = true;
+        }}
+        onBlurCapture={() => {
+          pausedRef.current = false;
+        }}
         className="no-scrollbar mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4"
       >
         {testimonials.map((review) => (

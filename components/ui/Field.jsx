@@ -11,6 +11,7 @@ export default function Field({
   hint,
   options,
   className,
+  inputClassName,
   ...props
 }) {
   const Tag = as;
@@ -25,7 +26,8 @@ export default function Field({
       invalid
         ? 'border-maple-500 focus:border-maple-600'
         : 'border-ink-200 hover:border-ink-300 focus:border-maple-500 dark:border-ink-800',
-      as === 'textarea' && 'min-h-[128px] resize-y'
+      as === 'textarea' && 'min-h-[128px] resize-y',
+      inputClassName
     ),
     ...props,
   };

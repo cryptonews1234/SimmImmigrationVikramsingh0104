@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Every service page lives here, keyed by its URL slug.
  * The dynamic route pages/services/[slug].js renders each one with
  * components/service/ServicePage.jsx.
@@ -41,7 +41,7 @@ const servicePages = {
     meta: {
       title: 'Post-Graduation Work Permit (PGWP) Canada',
       description:
-        'PGWP eligibility, deadlines, language and field-of-study requirements, permit length, and application support for international graduates.',
+        'PGWP eligibility, deadlines, language requirements, field-of-study checks, and common filing mistakes for post-graduation work permits in Canada.',
       updated: 'June 2026',
     },
     hero: {
@@ -49,44 +49,58 @@ const servicePages = {
       title: 'Graduated in Canada?',
       titleAccent: 'Turn it into work experience.',
       intro:
-        'The PGWP is an open work permit that lets eligible graduates work for most Canadian employers and build the experience that supports a future permanent residence pathway.',
+        'The PGWP is an open work permit that lets eligible graduates work for most Canadian employers and build work experience that supports long-term immigration pathways.',
       image: IMG.study,
       imageAlt: 'International graduate starting work in Canada',
     },
     quickFacts: [
       { value: 'Up to 3 yrs', label: 'Possible permit length', icon: 'clock' },
-      { value: '180 days', label: 'Deadline to apply after completion', icon: 'bell' },
-      { value: 'Open permit', label: 'Not tied to one employer', icon: 'bolt' },
-      { value: 'CLB 5–7', label: 'Language requirement, by credential', icon: 'graduation' },
+      { value: '180 days', label: 'Typical filing deadline', icon: 'bell' },
+      { value: 'Open permit', label: 'Usually employer-flexible', icon: 'bolt' },
+      { value: 'One-time', label: 'Generally issued once', icon: 'check' },
     ],
     prose: [
       {
         heading: 'Overview',
         paragraphs: [
-          'Canada\u2019s Post-Graduation Work Permit Program gives eligible international graduates an opportunity to gain Canadian work experience after completing their studies. The permit may be valid for up to three years, depending on the type and length of the completed program and the expiry date of the passport.',
-          'Because it is an open work permit, a PGWP is not normally tied to one employer or occupation. That flexibility helps graduates enter the labour market and build the skilled work history required by some economic immigration programs.',
-          'Not every program offered by a designated learning institution qualifies. Before applying \u2014 ideally before enrolling \u2014 confirm that both the institution and the specific program are PGWP-eligible.',
+          'Canada\'s Post-Graduation Work Permit Program allows eligible international graduates to gain Canadian work experience after completing their studies.',
+          'Because it is generally an open work permit, PGWP holders can often work for most Canadian employers. The exact validity period depends on credential type, program length and passport validity.',
+          'Not every designated learning institution program qualifies, so applicants should verify eligibility before filing.',
         ],
       },
       {
         heading: 'Can I study overseas and still be eligible?',
         paragraphs: [
-          'Distance-learning rules depend on when the program or study permit application began. The temporary COVID-19 policies that permitted extensive overseas online study have ended.',
-          'For a program with a lock-in date on or after September 1, 2024, a student must generally complete at least 50% of the program in class in Canada. Time studied outside Canada is deducted when IRCC calculates the potential length of the permit, and online study from outside Canada after August 31, 2024 does not count toward it.',
-          'Different transitional rules may apply to programs started between September 1, 2022 and August 31, 2024. A careful review matters when a program included online study, an overseas component, a transfer, or time spent outside Canada.',
+          'Distance-learning rules depend on when studies began and which transitional IRCC policies apply.',
+          'For newer files, applicants often need to complete a required in-Canada portion of studies. Time completed outside Canada can affect permit length calculations.',
+          'A detailed review matters where there were transfers, leave periods, online semesters or time outside Canada.',
         ],
       },
       {
         heading: 'How long is a PGWP valid?',
         paragraphs: [
-          'The final validity period is decided by IRCC and cannot extend beyond passport validity. A PGWP is generally available only once, so check your passport and your complete study history before submitting.',
+          'Depending on the credential and eligible study period, a PGWP may be issued for up to three years.',
+          'Passport expiry can shorten the permit. A PGWP is generally available once in a lifetime.',
+        ],
+      },
+      {
+        heading: 'Language and field-of-study requirements',
+        paragraphs: [
+          'Most applications filed on or after November 1, 2024 require approved English or French test results.',
         ],
         items: [
-          'Programs shorter than eight months: generally not eligible, subject to specific Quebec and special-case rules.',
-          'Eight months to under two years: a permit may be issued for up to the same length as the program.',
-          'Master\u2019s degrees: an eligible program of at least eight months may qualify for a three-year permit even if under two years.',
-          'Two years or longer: a permit may be issued for up to three years.',
-          'More than one program: lengths may sometimes be combined when each program meets the requirements.',
+          'University graduates (bachelor\'s, master\'s, doctoral): generally CLB / NCLC 7 in each ability.',
+          'College and many non-university graduates: generally CLB / NCLC 5 in each ability.',
+          'Degree graduates are generally not subject to field-of-study restrictions.',
+          'Other graduates may need an eligible field of study depending on study-permit application date.',
+        ],
+      },
+      {
+        heading: 'Deadline and status planning',
+        paragraphs: [
+          'Applicants generally have 180 days after program-completion confirmation to file.',
+          'If status expires before filing, restoration or out-of-Canada filing rules may apply.',
+          'Some graduates may work while waiting, but only if all legal conditions are met.',
         ],
       },
     ],
@@ -95,41 +109,20 @@ const servicePages = {
         title: 'Eligibility requirements',
         icon: 'check',
         items: [
-          'Complete a PGWP-eligible program at an eligible designated learning institution.',
-          'Program lasting at least eight months, or at least 900 hours for certain Quebec credentials.',
-          'Full-time status during each academic semester; part-time generally permitted in the final semester.',
-          'Written confirmation and a transcript showing program requirements were completed.',
-          'Apply within 180 days after the school confirms completion.',
-          'Held a valid study permit at some point during those 180 days, unless an exception applies.',
+          'Completed a PGWP-eligible program at an eligible institution.',
+          'Applied within the allowed post-completion window.',
+          'Held valid study status when required by rules.',
+          'Met language and field requirements where applicable.',
         ],
       },
       {
-        title: 'Language and field of study',
-        icon: 'graduation',
-        items: [
-          'Most applications on or after November 1, 2024 require approved English or French test results.',
-          'University graduates (bachelor\u2019s, master\u2019s, doctoral): generally CLB 7 / NCLC 7 in each ability.',
-          'College, polytechnic and other non-university graduates: generally CLB / NCLC 5 in each ability.',
-          'Degree graduates are not subject to a field-of-study requirement.',
-          'Other graduates may need an eligible field of study if the study permit application was submitted on or after November 1, 2024.',
-        ],
-      },
-      {
-        title: 'Deadline and status',
-        icon: 'bell',
-        body:
-          'You generally have 180 days after the institution confirms completion. If your study permit expires before final marks are available, you may apply for a visitor record to stay, or apply from outside Canada. Staying past expiry may require restoration and additional fees. Some graduates may work full-time while the application is processed if they held a valid study permit when applying, completed their program, and were eligible to work off campus without exceeding permitted hours.',
-      },
-      {
-        title: 'Who may not qualify',
+        title: 'Common refusal triggers',
         icon: 'eye',
         items: [
-          'Already received a PGWP previously.',
-          'Completed a non-eligible program, or only English/French as a second language.',
-          'General-interest or most non-credit courses.',
-          'Exceeded permitted distance learning.',
-          'Failed to comply with study permit conditions, or took unauthorized leave.',
-          'Public-private curriculum licensing programs are generally not eligible.',
+          'Incorrect eligibility assumptions for institution or program.',
+          'Late filing or status gaps.',
+          'Unresolved distance-learning issues.',
+          'Missing language evidence where required.',
         ],
       },
     ],
@@ -182,7 +175,7 @@ const servicePages = {
     help: {
       heading: 'Protect your PGWP deadline',
       paragraphs: [
-        'We review your institution and program, calculate the application deadline, assess language and field-of-study requirements, examine study gaps or transfers, prepare supporting documents, and identify status concerns before submission.',
+        'We review eligibility, timing, study history and supporting documents before a PGWP application is submitted so avoidable refusals or short-issued permits do not derail later plans.',
       ],
       disclaimer: DISCLAIMER,
     },
@@ -191,7 +184,6 @@ const servicePages = {
       { label: 'Express Entry', href: '/services/express-entry' },
     ],
   },
-
   'lmia-work-permit': {
     category: 'Work Permits',
     meta: {
@@ -2009,17 +2001,16 @@ const servicePages = {
   'super-visa-income-requirement': {
     category: 'Super Visa Guides',
     meta: {
-      title: 'Super Visa Income Requirement and Family Size',
+      title: 'Super Visa Income Requirements',
       description:
-        'Understand the Super Visa minimum necessary income requirement, family-size calculation, co-signers, and documents used to prove host income.',
+        'Understand the Super Visa minimum necessary income requirement, household-size calculation, acceptable proof of income, and common mistakes to avoid.',
       updated: 'June 2026',
     },
     hero: {
       eyebrow: 'Super Visa Income Requirement',
-      title: 'Host income',
-      titleAccent: 'and family size.',
+      title: 'Super Visa Income Requirements',
       intro:
-        'How host income, family size, co-signing and supporting financial records affect a Super Visa application \u2014 and the calculation errors that sink files.',
+        'One of the most important eligibility requirements for a Canada Super Visa is meeting the financial criteria established by Immigration, Refugees and Citizenship Canada (IRCC). Before a Super Visa can be approved, the Canadian host must demonstrate that they have sufficient income to financially support their visiting parent or grandparent during their stay in Canada.',
       image: IMG.insurance,
       imageAlt: 'Reviewing income documents for a Super Visa application',
     },
@@ -2031,22 +2022,170 @@ const servicePages = {
     ],
     prose: [
       {
-        heading: 'What is the income requirement?',
+        heading: 'Understanding Super Visa Income Requirements',
         paragraphs: [
-          "The child or grandchild hosting the applicant must meet or exceed IRCC's minimum necessary income for the applicable family size. Thresholds can change, so the current IRCC table should be checked immediately before applying.",
+          'To qualify for a Canada Super Visa, the Canadian host must meet the Minimum Necessary Income (MNI), based on the Low Income Cut-Off (LICO) established by the Government of Canada. This financial requirement helps Immigration, Refugees and Citizenship Canada (IRCC) determine whether the host can adequately support their visiting parent or grandparent during their stay in Canada.',
+          'The required income is determined by the total household size, which generally includes the host, their spouse or common-law partner, dependent children, and the parent(s) or grandparent(s) being invited. As the household size increases, so does the minimum income required.',
+          'To demonstrate financial eligibility, the host should provide official supporting documents such as a Notice of Assessment (NOA), T4 slips, employment letters, recent pay stubs, or other acceptable proof of income.',
+          'Meeting the income requirement is an important part of the Super Visa application, but applicants must also satisfy other eligibility criteria, including qualifying medical insurance, admissibility, and compliance with the conditions of temporary residence.',
+          'The following sections explain how to calculate your household size, review the latest LICO income requirements, and outline the documents commonly accepted as proof of income.',
         ],
       },
       {
-        heading: 'Who counts in family size?',
+        heading: 'Who Must Meet the Income Requirement?',
         paragraphs: [
-          'The calculation may include the host, their spouse or common-law partner, dependent children, the invited parent or grandparent, other people invited at the same time, and certain people covered by previous sponsorship or Super Visa commitments.',
-          "The host's spouse or common-law partner may co-sign if eligible and may provide income evidence. Other relatives, including siblings, cannot co-sign simply to help meet the threshold.",
+          'For a Canada Super Visa application, the Canadian host is responsible for meeting the minimum income requirement established by Immigration, Refugees and Citizenship Canada (IRCC). The host must demonstrate that they have sufficient financial resources to support the parent or grandparent during their stay in Canada.',
+          'To be eligible to invite parents or grandparents under the Super Visa program, the host must generally be one of the following:',
+        ],
+        items: [
+          'A Canadian citizen',
+          'A permanent resident of Canada',
+          'A person registered as an Indian under the Canadian Indian Act',
         ],
       },
       {
-        heading: 'Recently increased or variable income',
+        heading: 'Who Counts as Family Size?',
         paragraphs: [
-          'Current employment evidence may help explain a recent increase, but IRCC assesses the complete record. Variable, business, rental or investment income should be clearly documented and consistent with tax filings.',
+          'One of the most common questions applicants have is how to calculate family size for the Super Visa income requirement. The Minimum Necessary Income (MNI) is determined by the total number of people in the Canadian host\'s household. An incorrect family size calculation may affect whether the required income threshold is met.',
+          'When determining your household size, you should generally include:',
+        ],
+        items: [
+          'Yourself (the Canadian host)',
+          'Your spouse or common-law partner (if applicable)',
+          'Your dependent children',
+          'Any dependent children of your spouse or common-law partner',
+          'The parent(s) or grandparent(s) you are inviting under the Super Visa',
+          'Any individuals you have previously sponsored if you are still financially responsible for them under a sponsorship undertaking',
+        ],
+      },
+      {
+        heading: 'Example of Household Size Calculation',
+        paragraphs: [
+          'Each person counts toward the total household size regardless of whether they will be travelling to Canada. Once the total household size has been determined, it is compared against the applicable Low Income Cut-Off (LICO) to determine the minimum income required.',
+          'In this example, the Canadian host would need to meet the Minimum Necessary Income (MNI) applicable to a household of six people.',
+        ],
+        table: {
+          headers: ['Household Members', 'Count'],
+          rows: [
+            ['You', '1'],
+            ['Spouse', '1'],
+            ['Two Dependent Children', '2'],
+            ['Two Parents Invited', '2'],
+            ['Total Household Size', '6'],
+          ],
+        },
+      },
+      {
+        heading: 'Current Super Visa Income Requirements (LICO)',
+        paragraphs: [
+          'Note: The following table reflects the current Minimum Necessary Income (MNI) based on the latest Low Income Cut-Off (LICO) published by the Government of Canada. Always verify the most recent figures before submitting your application.',
+        ],
+        table: {
+          headers: ['Total Number of Family Members', 'Minimum Income Required (CAD)'],
+          rows: [
+            ['1', '$30,526'],
+            ['2', '$38,002'],
+            ['3', '$46,720'],
+            ['4', '$56,724'],
+            ['5', '$64,336'],
+            ['6', '$72,560'],
+            ['7', '$80,784'],
+            ['More than 7', 'Add $8,224 for each additional person'],
+          ],
+        },
+        closing:
+          'Note: Income thresholds may change periodically. Check the latest requirements before applying.',
+      },
+      {
+        heading: 'Documents Accepted as Proof of Income',
+        paragraphs: [
+          'To demonstrate that the Minimum Necessary Income (MNI) has been met, the Canadian host should provide financial documents supporting their income. Depending on the circumstances, IRCC may accept:',
+        ],
+        items: [
+          'Notice of Assessment (NOA) from the Canada Revenue Agency (CRA)',
+          'T4 slips',
+          'Employment letter',
+          'Recent pay stubs',
+          'T1 General Income Tax Return',
+          'Self-employed income documents',
+          'Pension income statements',
+          'Investment or rental income documents, where applicable',
+        ],
+        closing:
+          'Providing complete and up-to-date financial documents helps IRCC assess your Super Visa application more efficiently.',
+      },
+      {
+        heading: 'Can My Spouse\'s Income Be Included?',
+        paragraphs: [
+          'Yes. In many cases, the income of your spouse or common-law partner may be included when determining whether your household meets the Minimum Necessary Income (MNI).',
+          'Combined household income may be considered for:',
+        ],
+        items: ['Married couples', 'Common-law partners', 'Joint financial support'],
+        closing:
+          'Supporting financial documents for both partners should be included where applicable.',
+      },
+      {
+        heading: 'Income Requirements for Self-Employed Sponsors',
+        paragraphs: [
+          'Self-employed sponsors may qualify for a Super Visa if they meet the required income threshold. To demonstrate financial eligibility, IRCC may consider documents such as:',
+        ],
+        items: [
+          'CRA Notice of Assessment (NOA)',
+          'T1 General Income Tax Return',
+          'Business financial statements',
+          'Proof of business income, such as invoices or contracts',
+        ],
+        closing: 'Clear and organized financial records can help support your Super Visa application.',
+      },
+      {
+        heading: 'Common Mistakes to Avoid',
+        paragraphs: [
+          'A well-prepared application can help avoid unnecessary delays and requests for additional information. Some common mistakes include:',
+        ],
+        items: [
+          'Incorrectly calculating the total household size.',
+          'Providing outdated or incomplete proof of income.',
+          'Submitting financial documents that do not clearly demonstrate the required income.',
+          'Failing to include all required supporting documents.',
+          'Not maintaining valid Super Visa medical insurance.',
+          'Assuming that meeting the income requirement alone guarantees approval.',
+        ],
+        closing:
+          'Carefully reviewing your application before submission can help ensure all eligibility requirements are properly addressed.',
+      },
+      {
+        heading: 'Frequently Asked Questions',
+        faqs: [
+          {
+            question: 'What is the minimum income required for a Super Visa?',
+            answer:
+              'The minimum income depends on your total household size and is based on the Minimum Necessary Income (MNI) or Low Income Cut-Off (LICO) published by the Government of Canada.',
+          },
+          {
+            question: 'How is household size calculated?',
+            answer:
+              'Household size generally includes the Canadian host, their spouse or common-law partner, dependent children, any individuals still covered under a sponsorship undertaking, and the parent(s) or grandparent(s) being invited.',
+          },
+          {
+            question: "Can my spouse's income be included?",
+            answer:
+              'Yes. In many cases, the combined income of a spouse or common-law partner may be considered when determining whether the household meets the required income threshold.',
+          },
+          {
+            question: 'What documents can I use as proof of income?',
+            answer:
+              'Commonly accepted documents include a Notice of Assessment (NOA), T4 slips, employment letters, recent pay stubs, T1 General Income Tax Return, and other supporting financial documents, depending on your circumstances.',
+          },
+          {
+            question: 'Can self-employed sponsors qualify?',
+            answer:
+              'Yes. Self-employed sponsors may qualify if they can demonstrate that they meet the required income threshold through appropriate CRA and business financial documents.',
+          },
+          {
+            question: 'Does meeting the income requirement guarantee Super Visa approval?',
+            answer:
+              'No. Meeting the income requirement is only one part of the assessment. Applicants must also satisfy all other eligibility and admissibility requirements under the Super Visa program.',
+          },
         ],
       },
     ],
@@ -2251,8 +2390,7 @@ const servicePages = {
     },
     hero: {
       eyebrow: 'Super Visa Insurance',
-      title: 'Insurance requirements,',
-      titleAccent: 'in full.',
+      title: 'Super Visa Insurance Requirements',
       intro:
         'Every Super Visa applicant must show proof of qualifying private health insurance. This is where more files fail than almost anywhere else \u2014 here is exactly what the policy must do.',
       image: IMG.insurance,
@@ -2602,7 +2740,7 @@ const servicePages = {
 'overseas-study-permit': {
     category: 'Study',
     meta: {
-      title: 'Offshore Study Permit — Applying From Outside Canada',
+      title: 'Offshore Study Permit â€” Applying From Outside Canada',
       description:
         'First-time study permit applications from outside Canada: letter of acceptance, proof of funds, GIC, tuition, and the provincial attestation letter.',
       updated: 'June 2026',
@@ -2671,7 +2809,7 @@ const servicePages = {
   'in-canada-study-permit': {
     category: 'Study',
     meta: {
-      title: 'Onshore Study Permit — Applying From Inside Canada',
+      title: 'Onshore Study Permit â€” Applying From Inside Canada',
       description:
         'Already in Canada? Change course, college or status: visitor visa to study permit, DLI transfers, and work permit to study permit transitions.',
       updated: 'June 2026',
