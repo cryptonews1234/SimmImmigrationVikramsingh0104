@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: theme('colors.ink.200');
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: clip;
+    max-width: 100%;
+    @apply bg-white text-navy-800 antialiased transition-colors duration-500;
+    @apply dark:bg-navy-950 dark:text-ink-100;
+  }
+
+ h1, h2, h3, h4 {
+  @apply font-display font-extrabold text-navy-800 dark:text-white;
+ }
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-red-600 ring-offset-2 ring-offset-white dark:ring-offset-navy-950 rounded-md;
+  }
+
+  ::selection {
+    @apply bg-red-600 text-white;
+  }
+}
+
+@layer components {
+  .surface {
+    @apply rounded-2xl border border-ink-200/80 bg-ink-50/70 dark:border-ink-800 dark:bg-ink-900/60;
+  }
+
+  .text-gradient {
+    @apply bg-red-gradient bg-clip-text text-transparent;
+  }
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { @apply bg-transparent; }
+::-webkit-scrollbar-thumb { @apply rounded-full bg-ink-300 dark:bg-ink-700; }
+::-webkit-scrollbar-thumb:hover { @apply bg-red-600; }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: ticker 30s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
