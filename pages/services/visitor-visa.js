@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import visitorVisa from '@/data/visitorVisa';
 import { fadeUp, stagger, viewport } from '@/lib/motion';
-import { breadcrumbSchema, faqSchema, organizationSchema } from '@/seo/schema';
+import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from '@/seo/schema';
 import Seo from '@/components/common/Seo';
 import Reveal from '@/components/common/Reveal';
 import Section from '@/components/ui/Section';
@@ -11,6 +11,7 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import ServiceHero from '@/components/service/ServiceHero';
 import ServiceCta from '@/components/service/ServiceCta';
+import OnThisPage from '@/components/service/OnThisPage';
 
 const {
   meta,
@@ -22,15 +23,30 @@ const {
   risksHeading,
   risks,
   risksNote,
+  comparison,
+  extension,
   process,
   why,
   faqs,
   help,
 } = visitorVisa;
 
+const onThisPageItems = [
+  { label: 'What is a Visitor Visa?', href: '#overview' },
+  { label: 'What officers look at', href: '#requirements' },
+  { label: 'Document checklist', href: '#documents' },
+  { label: 'Common refusal concerns', href: '#risks' },
+  { label: 'Visitor Visa vs. Super Visa', href: '#comparison' },
+  { label: 'Extending visitor status', href: '#extension' },
+  { label: 'How the process works', href: '#process' },
+  { label: 'How we can help', href: '#why-us' },
+  { label: 'Frequently asked questions', href: '#faq' },
+];
+
 export default function VisitorVisaPage() {
   const schemas = [
     organizationSchema(),
+    serviceSchema({ name: 'Visitor Visa', description: meta.description, path: meta.path, category: 'Temporary Residence' }),
     faqSchema(faqs),
     breadcrumbSchema([
       { name: 'Home', path: '/' },
@@ -40,7 +56,7 @@ export default function VisitorVisaPage() {
 
   return (
     <>
-      <Seo title={meta.title} description={meta.description} path={meta.path} schemas={schemas} />
+      <Seo title={meta.title} description={meta.description} path={meta.path} keywords={meta.keywords} schemas={schemas} />
 
       <ServiceHero
         eyebrow={hero.eyebrow}
@@ -52,6 +68,8 @@ export default function VisitorVisaPage() {
         imageAlt={hero.imageAlt}
         facts={quickFacts}
       />
+
+      <OnThisPage items={onThisPageItems} />
 
       {/* What is it */}
       <Section id="overview">
@@ -171,6 +189,49 @@ export default function VisitorVisaPage() {
               </motion.li>
             ))}
           </motion.ul>
+        </div>
+      </Section>
+
+      {/* Visitor Visa vs. Super Visa */}
+      <Section id="comparison">
+        <SectionHeading eyebrow="Compare" title={comparison.heading} description={comparison.description} />
+        <Reveal className="mt-12 overflow-hidden rounded-3xl border border-ink-200 shadow-soft dark:border-ink-800">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[38rem] border-collapse text-left">
+              <thead>
+                <tr className="bg-maple-gradient text-white">
+                  <th className="px-6 py-4 text-sm font-bold">Feature</th>
+                  <th className="px-6 py-4 text-sm font-bold">Visitor Visa</th>
+                  <th className="px-6 py-4 text-sm font-bold">Super Visa</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparison.rows.map((row) => (
+                  <tr key={row.feature} className="border-t border-ink-200 bg-white dark:border-ink-800 dark:bg-ink-900">
+                    <td className="px-6 py-4 text-sm font-semibold text-ink-900 dark:text-white">{row.feature}</td>
+                    <td className="px-6 py-4 text-sm text-ink-600 dark:text-ink-300">{row.visitor}</td>
+                    <td className="px-6 py-4 text-sm text-ink-600 dark:text-ink-300">{row.superVisa}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* Extending visitor status */}
+      <Section muted id="extension">
+        <div className="mx-auto max-w-[1100px]">
+          <SectionHeading eyebrow="Stay longer" title={extension.heading} />
+          <Reveal className="mt-7 space-y-5">
+            {extension.paragraphs.map((text) => (
+              <p key={text.slice(0, 32)} className="text-[17px] leading-relaxed text-ink-600 dark:text-ink-300">{text}</p>
+            ))}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Button href="/services/super-visa" variant="secondary">Compare the Super Visa</Button>
+              <Button href="/#contact" withArrow>Review your options</Button>
+            </div>
+          </Reveal>
         </div>
       </Section>
 

@@ -23,7 +23,7 @@ export const mainNav = [
     children: [
       { label: 'Study Permit', href: '/services/study-permit', desc: 'Study plan, funds, DLI acceptance', icon: 'graduation' },
        { label: 'Overseas Study Permit', href: '/services/overseas-study-permit', desc: 'Applying from outside Canada', icon: 'graduation' },
-      { label: ' In-Canada Study Permit', href: '/services/ in-canada-study-permit', desc: 'Change course, college or status', icon: 'graduation' },
+      { label: 'In-Canada Study Permit', href: '/services/in-canada-study-permit', desc: 'Change course, college or status', icon: 'graduation' },
       { label: 'Extend Study Permit', href: '/services/extend-study-permit', desc: 'Extend your stay to keep studying', icon: 'graduation' },
     ],
   },
@@ -72,15 +72,17 @@ export const mainNav = [
     href: '/services',
     children: [
       { label: 'All Services', href: '/services', desc: 'Browse the full program directory', icon: 'route' },
+      { label: 'Contact Us', href: '/#contact', desc: 'Book a confidential assessment', icon: 'mail' },
     ],
   },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Blog', href: '/blog' },
 ];
 
 export const footerLinks = {
   quickLinks: [
     { label: 'Home', href: '/#top' },
     { label: 'All Services', href: '/services' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Why Choose Us', href: '/#why-us' },
     { label: 'Our Process', href: '/#process' },
     { label: 'Reviews', href: '/#reviews' },

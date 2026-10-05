@@ -3,8 +3,9 @@ const studyPermit = {
     title: 'Study Permit Consultant in Canada',
     description:
       'Study permit support for international students, including study plans, financial proof, documents, extensions, and refusal review.',
+    keywords: ['study permit Canada', 'Canada student visa', 'study permit requirements', 'study permit documents', 'international student Canada'],
     path: '/services/study-permit',
-    updated: 'June 2026',
+    updated: 'October 2026',
   },
 
   hero: {
@@ -29,6 +30,7 @@ const studyPermit = {
     heading: 'Who may apply for a study permit?',
     paragraphs: [
       'A study permit is issued to international students who have been accepted by a designated learning institution (DLI) and can satisfy an officer that they meet the program and temporary resident requirements. The permit authorizes study \u2014 not permanent residence \u2014 and comes with conditions you must keep meeting throughout your stay.',
+      'A study permit is not a travel document. Depending on nationality, an approved student may also need a temporary resident visa or electronic travel authorization to travel to Canada.',
     ],
     benefits: [
       'Students accepted by a designated learning institution.',
@@ -72,6 +74,8 @@ const studyPermit = {
       'Study plan explaining your program choice and goals.',
       'Education records, transcripts and employment history.',
       'Provincial attestation letter or other documents, if required.',
+      'Approved language test results, where required by the institution or local checklist.',
+      'Digital photograph, medical exam or police certificate, where required.',
     ],
   },
 

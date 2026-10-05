@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import superVisa from '@/data/superVisa';
 import { fadeUp, stagger, viewport } from '@/lib/motion';
-import { breadcrumbSchema, faqSchema, organizationSchema } from '@/seo/schema';
+import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from '@/seo/schema';
 import Seo from '@/components/common/Seo';
 import Reveal from '@/components/common/Reveal';
 import Section from '@/components/ui/Section';
@@ -48,6 +48,7 @@ export default function SuperVisaPage() {
 
   const schemas = [
     organizationSchema(),
+    serviceSchema({ name: 'Super Visa', description: meta.description, path: meta.path, category: 'Temporary Residence' }),
     faqSchema(flatFaqs),
     breadcrumbSchema([
       { name: 'Home', path: '/' },
@@ -57,7 +58,7 @@ export default function SuperVisaPage() {
 
   return (
     <>
-      <Seo title={meta.title} description={meta.description} path={meta.path} schemas={schemas} />
+      <Seo title={meta.title} description={meta.description} path={meta.path} keywords={meta.keywords} schemas={schemas} />
 
       <ServiceHero
         eyebrow={hero.eyebrow}

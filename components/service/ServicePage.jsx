@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { EASE, viewport } from '@/lib/motion';
-import { breadcrumbSchema, faqSchema, organizationSchema } from '@/seo/schema';
+import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from '@/seo/schema';
 import { categoryBreadcrumb } from '@/data/serviceCategories';
 import Seo from '@/components/common/Seo';
 import Reveal from '@/components/common/Reveal';
@@ -48,9 +48,6 @@ export default function ServicePage({ slug, data }) {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '');
-  const onThisPageItems = isSuperVisaIncomeRequirementPage
-    ? prose.map((block) => ({ label: block.heading, href: `#${proseAnchorId(block.heading)}` }))
-    : [];
 
   const path = `/services/${slug}`;
   const cat = categoryBreadcrumb[category];
@@ -63,6 +60,13 @@ export default function ServicePage({ slug, data }) {
       ...(cat ? [{ name: cat.label, path: cat.href }] : []),
       { name: hero.eyebrow, path },
     ]),
+    serviceSchema({
+      name: hero.eyebrow,
+      description: meta.description,
+      path,
+      serviceType: hero.eyebrow,
+      category,
+    }),
     ...(faqs.length ? [faqSchema(faqs)] : []),
   ];
 
@@ -71,6 +75,7 @@ export default function ServicePage({ slug, data }) {
   if (prose.length > 0) {
     sections.push({
       id: 'overview',
+      navLabel: prose[0]?.heading || 'Overview',
       render: (muted) => (
         <Section key="overview" id="overview" muted={muted}>
           <div className="mx-auto max-w-[1320px] space-y-16">
@@ -142,8 +147,70 @@ export default function ServicePage({ slug, data }) {
                       <Accordion items={block.faqs} allowMultiple startClosed />
                     </div>
                   )}
+                  {block.links?.length > 0 && (
+                    <div className="flex flex-wrap gap-3 pt-2" aria-label={`Related to ${block.heading}`}>
+                      {block.links.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          className="inline-flex items-center rounded-full border border-ink-200 px-4 py-2 text-sm font-semibold text-ink-700 transition-colors hover:border-maple-300 hover:text-maple-700 dark:border-ink-700 dark:text-ink-200 dark:hover:border-maple-700 dark:hover:text-maple-300"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </Reveal>
               </div>
+            ))}
+          </div>
+        </Section>
+      ),
+    });
+  }
+
+  if (cards.length > 0) {
+    sections.push({
+      id: 'key-information',
+      navLabel: 'What you need to know',
+      render: (muted) => (
+        <Section key="key-information" id="key-information" muted={muted}>
+          <SectionHeading
+            eyebrow="Key information"
+            title="What you need to know"
+            description="Eligibility, supporting evidence and practical considerations for this application."
+            className={sectionHeadingClass}
+          />
+          <div className="mx-auto mt-12 grid max-w-[1320px] gap-6 md:grid-cols-2">
+            {cards.map((card, index) => (
+              <motion.article
+                key={card.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={viewport}
+                transition={{ duration: 0.5, delay: (index % 2) * 0.08, ease: EASE }}
+                className="group h-full rounded-3xl border border-ink-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-maple-200 hover:shadow-lift dark:border-ink-800 dark:bg-ink-900"
+              >
+                <div className="flex items-center gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-maple-50 text-maple-600 transition-colors group-hover:bg-maple-gradient group-hover:text-white dark:bg-ink-800">
+                    <Icon name={card.icon || 'check'} className="h-5 w-5" />
+                  </span>
+                  <h3 className={`text-ink-900 dark:text-white ${subheadingClassName}`}>{card.title}</h3>
+                </div>
+                {card.body && (
+                  <p className="mt-5 text-[15px] leading-relaxed text-ink-500 dark:text-ink-300">{card.body}</p>
+                )}
+                {card.items?.length > 0 && (
+                  <ul className="mt-5 space-y-3">
+                    {card.items.map((item) => (
+                      <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-600 dark:text-ink-300">
+                        <Icon name="check" className="mt-1 h-4 w-4 shrink-0 text-maple-600" strokeWidth={2.6} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </motion.article>
             ))}
           </div>
         </Section>
@@ -154,6 +221,7 @@ export default function ServicePage({ slug, data }) {
   if (comparison) {
     sections.push({
       id: 'comparison',
+      navLabel: comparison.heading,
       render: (muted) => (
         <Section key="comparison" id="comparison" muted={muted}>
           <SectionHeading
@@ -201,6 +269,7 @@ export default function ServicePage({ slug, data }) {
   if (documents?.items?.length) {
     sections.push({
       id: 'documents',
+      navLabel: documents.heading,
       render: (muted) => (
         <Section key="documents" id="documents" muted={muted}>
           <SectionHeading
@@ -234,6 +303,7 @@ export default function ServicePage({ slug, data }) {
   if (process.length > 0) {
     sections.push({
       id: 'process',
+      navLabel: 'How the process works',
       render: (muted) => (
         <Section key="process" id="process" muted={muted}>
           <SectionHeading eyebrow="Step by step" title="How the process works" className={sectionHeadingClass} />
@@ -264,6 +334,7 @@ export default function ServicePage({ slug, data }) {
   if (why.length > 0) {
     sections.push({
       id: 'why-us',
+      navLabel: 'How Simmi Immigration can help',
       render: (muted) => (
         <Section key="why-us" id="why-us" muted={muted}>
           <SectionHeading
@@ -298,6 +369,7 @@ export default function ServicePage({ slug, data }) {
   if (faqs.length > 0) {
     sections.push({
       id: 'faq',
+      navLabel: 'Frequently asked questions',
       render: (muted) => (
         <Section key="faq" id="faq" muted={muted}>
           <SectionHeading
@@ -317,9 +389,13 @@ export default function ServicePage({ slug, data }) {
     });
   }
 
+  const onThisPageItems = isSuperVisaIncomeRequirementPage
+    ? prose.map((block) => ({ label: block.heading, href: `#${proseAnchorId(block.heading)}` }))
+    : sections.map((section) => ({ label: section.navLabel, href: `#${section.id}` }));
+
   return (
     <>
-      <Seo title={meta.title} description={meta.description} path={path} schemas={schemas} />
+      <Seo title={meta.title} description={meta.description} path={path} keywords={meta.keywords} schemas={schemas} />
 
       <ServiceHero
         eyebrow={hero.eyebrow}
@@ -337,12 +413,12 @@ export default function ServicePage({ slug, data }) {
         breadcrumbs={breadcrumbs}
       />
 
-      {isSuperVisaIncomeRequirementPage && onThisPageItems.length > 0 && (
+      {onThisPageItems.length > 0 && (
         <section aria-label="On this page" className="bg-white pb-8 pt-0 dark:bg-ink-950">
           <div className="mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
             <div className="mx-auto max-w-[1100px] border-t border-ink-200 pt-5 dark:border-ink-800">
               <h2 className="font-sans text-4xl font-bold tracking-[-0.01em] text-ink-700 dark:text-ink-100">On This Page</h2>
-              <ul className="mt-4 list-disc space-y-0.5 pl-6 text-lg leading-normal text-ink-600 dark:text-ink-300">
+              <ul className="mt-4 grid list-disc gap-x-10 gap-y-1 pl-6 text-base leading-relaxed text-ink-600 dark:text-ink-300 sm:grid-cols-2">
                 {onThisPageItems.map((item) => (
                   <li key={item.href}>
                     <a href={item.href} className="transition-colors hover:text-maple-700 dark:hover:text-maple-300">

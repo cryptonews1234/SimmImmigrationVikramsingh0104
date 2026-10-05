@@ -20,6 +20,7 @@ const CORE = {
   links: [
     { label: 'Home', href: '/' },
     { label: 'All Services', href: '/services' },
+    { label: 'Blog', href: '/blog' },
     { label: 'Super Visa', href: '/services/super-visa' },
     { label: 'Visitor Visa', href: '/services/visitor-visa' },
     { label: 'Study Permit', href: '/services/study-permit' },

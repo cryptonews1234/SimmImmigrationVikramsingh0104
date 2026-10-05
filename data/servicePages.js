@@ -1,4 +1,7 @@
-﻿/**
+import studyPageEnhancements from '@/data/studyPageEnhancements';
+import clientServiceEnhancements from '@/data/clientServiceEnhancements';
+
+/**
  * Every service page lives here, keyed by its URL slug.
  * The dynamic route pages/services/[slug].js renders each one with
  * components/service/ServicePage.jsx.
@@ -2740,7 +2743,7 @@ const servicePages = {
 'overseas-study-permit': {
     category: 'Study',
     meta: {
-      title: 'Offshore Study Permit â€” Applying From Outside Canada',
+      title: 'Offshore Study Permit — Applying From Outside Canada',
       description:
         'First-time study permit applications from outside Canada: letter of acceptance, proof of funds, GIC, tuition, and the provincial attestation letter.',
       updated: 'June 2026',
@@ -2809,7 +2812,7 @@ const servicePages = {
   'in-canada-study-permit': {
     category: 'Study',
     meta: {
-      title: 'Onshore Study Permit â€” Applying From Inside Canada',
+      title: 'Onshore Study Permit — Applying From Inside Canada',
       description:
         'Already in Canada? Change course, college or status: visitor visa to study permit, DLI transfers, and work permit to study permit transitions.',
       updated: 'June 2026',
@@ -2945,6 +2948,22 @@ const servicePages = {
   },
 };
 
+Object.entries(studyPageEnhancements).forEach(([slug, enhancement]) => {
+  servicePages[slug] = {
+    ...servicePages[slug],
+    ...enhancement,
+    meta: { ...servicePages[slug].meta, ...enhancement.meta },
+  };
+});
+
+Object.entries(clientServiceEnhancements).forEach(([slug, enhancement]) => {
+  servicePages[slug] = {
+    ...servicePages[slug],
+    ...enhancement,
+    meta: { ...servicePages[slug].meta, ...enhancement.meta },
+  };
+});
+
 export const serviceSlugs = Object.keys(servicePages);
 
 // Category -> breadcrumb entry. The href is where "Home > [Category]" points.
@@ -2954,6 +2973,7 @@ export const categoryBreadcrumb = {
   'Work Permits': { label: 'Work', href: '/#programs' },
   'Permanent Residence': { label: 'Permanent Residence', href: '/#permanent-residence' },
   'Business Visa': { label: 'Business', href: '/#business-visa' },
+  Study: { label: 'Study', href: '/#programs' },
   'Super Visa Guides': { label: 'Super Visa', href: '/services/super-visa' },
   'Additional Services': { label: 'Additional Services', href: '/#additional-services' },
 };

@@ -91,3 +91,23 @@ export function websiteSchema() {
     inLanguage: 'en-CA',
   };
 }
+
+export function serviceSchema({ name, description, path, serviceType, category } = {}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${defaultSEO.siteUrl}${path}#service`,
+    name,
+    description,
+    serviceType: serviceType || name,
+    category,
+    url: `${defaultSEO.siteUrl}${path}`,
+    areaServed: { '@type': 'Country', name: 'Canada' },
+    provider: {
+      '@type': 'Organization',
+      '@id': `${company.url}/#organization`,
+      name: company.name,
+      url: company.url,
+    },
+  };
+}

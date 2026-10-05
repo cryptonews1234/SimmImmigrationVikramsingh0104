@@ -4,7 +4,8 @@ const visitorVisa = {
     description:
       'Visitor visa guidance for family visits, tourism, business visits, documents, financial proof, and refusal concerns.',
     path: '/services/visitor-visa',
-    updated: 'June 2026',
+    updated: 'October 2026',
+    keywords: ['visitor visa Canada', 'Canada tourist visa', 'temporary resident visa Canada', 'visit family in Canada', 'visitor visa documents'],
   },
 
   hero: {
@@ -72,6 +73,9 @@ const visitorVisa = {
       'Travel itinerary and planned length of stay.',
       'Invitation letter and relationship proof, if visiting family or friends.',
       'Previous travel history and refusal documents, if applicable.',
+      'Completed application forms and digital photograph.',
+      'Medical examination or other country-specific evidence, where required.',
+      'Certified translations for documents not in English or French.',
     ],
   },
 
@@ -86,6 +90,26 @@ const visitorVisa = {
   ],
   risksNote:
     'If you have already been refused, the reapplication should answer the officer\u2019s specific concerns rather than resubmit the same evidence. We review the refusal letter first and rebuild the file around what went wrong.',
+
+  comparison: {
+    heading: 'Visitor Visa vs. Super Visa',
+    description: 'Both support temporary entry, but they serve different applicants and visit plans.',
+    rows: [
+      { feature: 'Who may apply', visitor: 'Eligible temporary visitors', superVisa: 'Eligible parents and grandparents' },
+      { feature: 'Typical purpose', visitor: 'Tourism, family or short business visits', superVisa: 'Extended family visits' },
+      { feature: 'Medical insurance', visitor: 'Not a standard mandatory requirement', superVisa: 'Qualifying insurance is required' },
+      { feature: 'Host income test', visitor: 'No fixed host threshold', superVisa: 'Host must meet the applicable income requirement' },
+      { feature: 'Medical exam', visitor: 'Only when required for the case', superVisa: 'Required' },
+    ],
+  },
+
+  extension: {
+    heading: 'Extending visitor status in Canada',
+    paragraphs: [
+      'A person who wants to remain in Canada beyond the authorized stay may apply for a visitor record before current status expires. A visitor record extends status; it is not a new visa and does not guarantee re-entry after travel.',
+      'The application should explain the reason for the longer stay, provide financial support and show how the visitor will continue to respect temporary-resident conditions.',
+    ],
+  },
 
   process: [
     { title: 'Assess profile', description: 'Review purpose, ties and travel history.' },

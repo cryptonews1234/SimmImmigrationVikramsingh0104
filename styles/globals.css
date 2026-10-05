@@ -42,6 +42,92 @@
   .text-gradient {
     @apply bg-red-gradient bg-clip-text text-transparent;
   }
+
+  .blog-prose {
+    @apply text-[1.05rem] leading-8 text-ink-700 dark:text-ink-200;
+  }
+
+  .blog-prose > *:first-child {
+    @apply mt-0;
+  }
+
+  .blog-prose h2 {
+    @apply mb-4 mt-12 text-3xl leading-tight sm:text-4xl;
+  }
+
+  .blog-prose h3 {
+    @apply mb-3 mt-10 text-2xl leading-tight;
+  }
+
+  .blog-prose h4 {
+    @apply mb-3 mt-8 text-xl;
+  }
+
+  .blog-prose p,
+  .blog-prose ul,
+  .blog-prose ol {
+    @apply mb-6;
+  }
+
+  .blog-prose ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+
+  .blog-prose ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+
+  .blog-prose a {
+    @apply font-semibold text-maple-600 underline decoration-maple-300 underline-offset-4 transition-colors hover:text-maple-700 dark:text-maple-400;
+  }
+
+  .blog-prose strong {
+    @apply font-bold text-navy-900 dark:text-white;
+  }
+
+  .blog-prose figure {
+    @apply my-9;
+  }
+
+  .blog-prose img {
+    @apply mx-auto h-auto max-w-full rounded-2xl shadow-soft;
+  }
+
+  .blog-prose figcaption {
+    @apply mt-3 text-center text-sm text-ink-400;
+  }
+
+  .blog-prose aside,
+  .blog-prose blockquote {
+    @apply my-8 rounded-2xl border-l-4 border-maple-600 bg-maple-50 p-6 text-ink-700 dark:bg-ink-900 dark:text-ink-200;
+  }
+
+  .blog-prose aside h2,
+  .blog-prose aside h3,
+  .blog-prose blockquote p {
+    @apply mt-0;
+  }
+
+  .blog-prose table {
+    @apply my-8 block w-full overflow-x-auto border-collapse text-left text-sm;
+  }
+
+  .blog-prose th,
+  .blog-prose td {
+    @apply border border-ink-200 px-4 py-3 dark:border-ink-700;
+  }
+
+  .blog-prose th {
+    @apply bg-navy-900 font-bold text-white;
+  }
+
+  .blog-prose details {
+    @apply my-5 rounded-2xl border border-ink-200 bg-ink-50 p-5 dark:border-ink-800 dark:bg-ink-900;
+  }
+
+  .blog-prose summary {
+    @apply cursor-pointer font-bold text-navy-900 dark:text-white;
+  }
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }

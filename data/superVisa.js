@@ -3,6 +3,7 @@ const superVisa = {
     title: 'Super Visa Canada: Requirements, Documents, Refusal Help',
     description:
       'Super Visa Canada support for parents and grandparents: eligibility checks, host income proof, insurance guidance, processing expectations, and refusal recovery strategy.',
+    keywords: ['Super Visa Canada', 'parent and grandparent Super Visa', 'Super Visa requirements', 'Super Visa insurance', 'Super Visa income requirement'],
     path: '/services/super-visa',
     updated: 'June 2026',
   },

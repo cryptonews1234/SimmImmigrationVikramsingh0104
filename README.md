@@ -10,6 +10,10 @@ npm run dev      # http://localhost:3000
 npm run build && npm start
 ```
 
+### Uplift blog
+
+The `/blog` index and `/blog/[slug]` article pages sync published content from Uplift using Incremental Static Regeneration. Add `UPLIFT_API_TOKEN` to `.env.local` for local development and to the Vercel project for Production, Preview, and Development. The token is server-only and must never use a `NEXT_PUBLIC_` prefix.
+
 ## Structure
 
 | Folder | Purpose |

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import studyPermit from '@/data/studyPermit';
 import { fadeUp, stagger, viewport } from '@/lib/motion';
-import { breadcrumbSchema, faqSchema, organizationSchema } from '@/seo/schema';
+import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from '@/seo/schema';
 import Seo from '@/components/common/Seo';
 import Reveal from '@/components/common/Reveal';
 import Section from '@/components/ui/Section';
@@ -11,6 +11,7 @@ import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import ServiceHero from '@/components/service/ServiceHero';
 import ServiceCta from '@/components/service/ServiceCta';
+import OnThisPage from '@/components/service/OnThisPage';
 
 const {
   meta,
@@ -28,9 +29,20 @@ const {
   help,
 } = studyPermit;
 
+const onThisPageItems = [
+  { label: 'Who may apply', href: '#overview' },
+  { label: 'What officers look at', href: '#requirements' },
+  { label: 'Document checklist', href: '#documents' },
+  { label: 'Common refusal concerns', href: '#risks' },
+  { label: 'How the process works', href: '#process' },
+  { label: 'How we can help', href: '#why-us' },
+  { label: 'Frequently asked questions', href: '#faq' },
+];
+
 export default function StudyPermitPage() {
   const schemas = [
     organizationSchema(),
+    serviceSchema({ name: 'Study Permit', description: meta.description, path: meta.path, category: 'Study' }),
     faqSchema(faqs),
     breadcrumbSchema([
       { name: 'Home', path: '/' },
@@ -41,7 +53,7 @@ export default function StudyPermitPage() {
 
   return (
     <>
-      <Seo title={meta.title} description={meta.description} path={meta.path} schemas={schemas} />
+      <Seo title={meta.title} description={meta.description} path={meta.path} keywords={meta.keywords} schemas={schemas} />
 
       <ServiceHero
         eyebrow={hero.eyebrow}
@@ -54,6 +66,8 @@ export default function StudyPermitPage() {
         imageAlt={hero.imageAlt}
         facts={quickFacts}
       />
+
+      <OnThisPage items={onThisPageItems} />
 
       {/* What is it */}
       <Section id="overview">
